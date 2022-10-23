@@ -1,6 +1,4 @@
 .card {
-  border: solid 1px var(--color-primary-border);
   padding: 1rem;
-  border-radius: var(--border-radius);
-  border: solid 1px var(--color-primary-border);
+  border-radius: 0.7rem;
 }

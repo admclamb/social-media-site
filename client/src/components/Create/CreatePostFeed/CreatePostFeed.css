@@ -1,8 +1,37 @@
 .create-post-feed {
   display: flex;
+  flex-direction: column;
+}
+
+.create-post-feed--header {
+  display: flex;
+  align-items: center;
 }
 
 .create-post-feed--form {
   margin-left: 1rem;
   width: 100%;
+}
+
+.create-post-feed--links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 5%;
+}
+
+.create-post-feed--links a {
+  color: inherit;
+  text-decoration: none;
+  margin-top: var(--padding-md);
+  padding: 0.4rem 3rem;
+  border-radius: 15px;
+  transition: 0.25s;
+}
+
+.create-post-feed--links a:hover {
+  background-color: var(--color-primary-light);
+}
+
+.create-post-feed--links a i {
 }

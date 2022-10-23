@@ -30,6 +30,9 @@ html {
   --input-padding: 0.6rem;
   --input-pill: 1.2rem;
   --border-radius: 1.2rem;
+  --padding-btn-block: 0.4rem;
+  --padding-btn-inline: 1.2rem;
+  --border-radius-btn: 1.5rem;
 }
 
 body {
@@ -89,8 +92,17 @@ small,
   color: var(--color-primary-contrast-text);
 }
 
+.text-secondary {
+  color: var(--color-secondary-light);
+}
+
 /* end colors */
 /* spacing */
+
+.mr-sm {
+  margin-right: var(--margin-sm);
+}
+
 .p-m {
   padding: var(--padding-md);
 }
@@ -112,3 +124,17 @@ small,
 }
 
 /* end forms */
+/* buttons */
+.btn {
+  padding: var(--padding-btn-block) var(--padding-btn-inline);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary-main);
+  color: var(--color-secondary-contrast-text);
+}
+
+.btn-pill {
+  border-radius: var(--border-radius-btn);
+}
+/* end buttons */
