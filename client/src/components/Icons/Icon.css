@@ -1,0 +1,23 @@
+.icon {
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.icon:hover {
+  filter: brightness(120%);
+}
+
+.icon:active {
+  background-color: var(--color-secondary-main);
+  color: var(--color-secondary-dark);
+}
+
+div:has(> .icon-active),
+div:has(> .icon-active) * {
+  background-color: var(--color-secondary-main);
+  color: var(--color-secondary-dark);
+}
+
+.icon-pfp {
+  user-select: none;
+}

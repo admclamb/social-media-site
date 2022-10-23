@@ -1,0 +1,8 @@
+.create-post-feed {
+  display: flex;
+}
+
+.create-post-feed--form {
+  margin-left: 1rem;
+  width: 100%;
+}

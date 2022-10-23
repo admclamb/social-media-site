@@ -1,0 +1,24 @@
+.no-match {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.no-match--container {
+  background-color: var(--color-primary-light);
+  padding: var(--padding-lg);
+  border: solid 1px var(--color-primary-border);
+  border-radius: var(--border-radius);
+  color: var(--color-primary-contrast-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.no-match--container-heading {
+  margin: 0;
+}
+
+.no-match--container-link {
+  color: inherit;
+}

@@ -1,0 +1,23 @@
+.wrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.circle-wrapper {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.circle-wrapper img {
+  border-radius: 50%;
+}
+
+.circle-wrapper a {
+  display: grid;
+  place-items: center;
+}
+
+.circle-wrapper-bg {
+  background-color: var(--color-primary-light);
+}

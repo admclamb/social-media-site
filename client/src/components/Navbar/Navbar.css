@@ -1,0 +1,36 @@
+.navbar {
+  padding-inline: var(--container-gap);
+  padding-block: var(--padding-sm);
+  background-color: var(--color-primary-main-alt);
+  color: var(--color-primary-contrast-text);
+  border-bottom: 1px solid var(--color-primary-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.navbar-brand {
+  color: inherit;
+  text-decoration: none;
+  margin-right: var(--margin-sm);
+}
+
+.navbar--left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar--profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar--profile div.acitve {
+  background-color: var(--color-secondary-main);
+  color: var(--color-secondary-light);
+}
