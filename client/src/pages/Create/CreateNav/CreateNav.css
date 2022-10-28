@@ -1,6 +1,13 @@
 .create-nav {
   position: fixed;
   margin-top: var(--navbar-height);
+  padding-inline: var(--container-gap);
   width: 100vw;
   background-color: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+}
+
+.create-nav ul {
+  list-style-type: none;
 }
