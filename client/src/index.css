@@ -13,6 +13,7 @@ html {
 :root {
   --color-primary-main: #212121;
   --color-primary-main-alt: #333333;
+  --color-primary-main-alt-transparent: #333333f5;
   --color-primary-light: #484848;
   --color-primary-dark: #000;
   --color-primary-main-transparent: #212121f5;
@@ -22,6 +23,9 @@ html {
   --color-secondary-light: #c158dc;
   --color-secondary-dark: #5c007a;
   --color-secondary-contrast-text: #fff;
+  --color-blue: #378fe9;
+  --color-green: #5f9b41;
+  --color-red: #f4556f;
   --container-gap: 12%;
   --padding-sm: 0.75rem;
   --padding-md: 0.95rem;
@@ -33,6 +37,7 @@ html {
   --padding-btn-block: 0.4rem;
   --padding-btn-inline: 1.2rem;
   --border-radius-btn: 1.5rem;
+  --navbar-height: 3.75rem;
 }
 
 body {
@@ -96,6 +101,16 @@ small,
   color: var(--color-secondary-light);
 }
 
+.text-red {
+  color: var(--color-red);
+}
+.text-blue {
+  color: var(--color-blue);
+}
+.text-green {
+  color: var(--color-green);
+}
+
 /* end colors */
 /* spacing */
 
@@ -105,6 +120,10 @@ small,
 
 .p-m {
   padding: var(--padding-md);
+}
+
+.p-sm {
+  padding: var(--padding-sm);
 }
 
 /* end spacing */

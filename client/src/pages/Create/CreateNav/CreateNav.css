@@ -1,0 +1,6 @@
+.create-nav {
+  position: fixed;
+  margin-top: var(--navbar-height);
+  width: 100vw;
+  background-color: var(--color-primary-light);
+}

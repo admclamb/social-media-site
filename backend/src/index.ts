@@ -1,6 +1,9 @@
-const { PORT = 5000 } = process.env;
-import { app } from './App';
+const { PORT = '5000' } = process.env;
+import { App } from './App';
 import { knex } from './db/connection';
+
+const app = new App();
+app.config();
 
 knex.migrate
   .latest()

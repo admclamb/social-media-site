@@ -7,26 +7,25 @@ type Props = {};
 
 const CreatePostFeed = (props: Props) => {
   return (
-    <Card classes="create-post-feed">
+    <Card classes="create-post-feed" padding={'p-sm'}>
       <div className="create-post-feed--header">
         <ProfileIcon />
-        <form className="create-post-feed--form">
-          <input
-            type="text"
-            className="input"
-            placeholder="What's happening?"
-          />
-        </form>
+        <div className="create-post-feed--form">
+          <Link to="/create" className="create-post-feed-input-button input">
+            What's happening?
+          </Link>
+        </div>
       </div>
+      <hr className="create-post-feed--hr" />
       <div className="create-post-feed--links">
         <Link to="/create/photo">
-          <i className="fa-solid fa-image text-secondary fa-lg mr-sm"></i> Photo
+          <i className="fa-solid fa-image text-blue fa-lg mr-sm"></i> Photo
         </Link>
         <Link to="/create/video">
-          <i className="fa-solid fa-video text-secondary fa-lg mr-sm"></i> Video
+          <i className="fa-solid fa-video text-green fa-lg mr-sm"></i> Video
         </Link>
         <Link to="/create/article">
-          <i className="fa-solid fa-newspaper text-secondary fa-lg mr-sm"></i>
+          <i className="fa-solid fa-newspaper text-red fa-lg mr-sm"></i>
           Article
         </Link>
       </div>

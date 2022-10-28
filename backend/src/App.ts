@@ -1,18 +1,34 @@
-import express from 'express';
+import express, { Application } from 'express';
 
 import { errorHandler } from './errors/errorHandler';
 import { notFound } from './errors/notFound';
 import { userRouter } from './user/user.router';
-const cors = require('cors');
-const path = require('path');
-const cookieParser = require('cookie-parser');
+import cors from 'cors';
+import * as path from 'path';
+import { recipeRouter } from './recipe/recipe.router';
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
-export const app = express();
+export class App {
+  instance: Application;
 
-app.use(cors());
-app.use(express.json());
-app.use(cookieParser());
-app.use('/users', userRouter);
-app.use(notFound);
-app.use(errorHandler);
+  constructor() {
+    this.instance = express();
+  }
+
+  private setRoutes() {
+    this.instance.use('/recipes', recipeRouter);
+    this.instance.use('/users', userRouter);
+  }
+
+  public config() {
+    this.instance.use(cors());
+    this.instance.use(express.json());
+    this.setRoutes();
+    this.instance.use(notFound);
+    this.instance.use(errorHandler);
+  }
+
+  public listen(PORT: string, listener: any) {
+    this.instance.listen(PORT, listener);
+  }
+}

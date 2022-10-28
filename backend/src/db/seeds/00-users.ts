@@ -9,7 +9,6 @@ exports.seed = function (knex: Knex) {
     .then(function () {
       return USERS_DATA.forEach((USER: any) => {
         USER.password = bcrypt.hashSync(USER.password, parseInt(SALT) || 2);
-        console.log(USER);
       });
     })
     .then(function () {
