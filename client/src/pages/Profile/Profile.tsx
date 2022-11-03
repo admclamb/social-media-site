@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileIcon from '../../components/Icons/ProfileIcon/ProfileIcon';
 import './Profile.css';
 type Props = {};
 
@@ -13,9 +14,12 @@ const Profile = (props: Props) => {
             width="100%"
           />
         </div>
-        <div>
-          <h3>Anthony Mclamb</h3>
-          <p>500 Friends</p>
+        <div className="profile-body">
+          <ProfileIcon />
+          <div>
+            <h3>Anthony Mclamb</h3>
+            <p>500 Friends</p>
+          </div>
         </div>
       </header>
     </main>
