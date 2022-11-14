@@ -11,6 +11,8 @@ const Home = (props: Props) => {
       <section className="home--main">
         <CreatePostFeed />
         <Post />
+        <Post />
+        <Post />
       </section>
       <aside className="home--aside"></aside>
     </main>

@@ -11,10 +11,10 @@ const PostFooter = (props: Props) => {
       </div>
       <div className="post-footer__buttons-container">
         <button className="post-footer__buttons-button">
-          <i className="fa-regular fa-thumbs-up fa-xl"></i> Like
+          <i className="fa-solid fa-thumbs-up fa-xl"></i> Like
         </button>
         <button className="post-footer__buttons-button">
-          <i className="fa-regular fa-comment fa-xl"></i> Comment
+          <i className="fa-solid fa-messages fa-xl"></i> Comment
         </button>
         <button className="post-footer__buttons-button">
           <i className="fa-solid fa-share fa-xl"></i> Share
