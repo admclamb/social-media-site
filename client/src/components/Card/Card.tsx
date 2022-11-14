@@ -17,7 +17,7 @@ const Card = ({ children, background, padding, classes }: Props) => {
 
 Card.defaultProps = {
   background: 'bg-primary-main-alt',
-  padding: 'p-m',
+  padding: 'p-md',
   classes: '',
 };
 

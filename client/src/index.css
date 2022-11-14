@@ -118,12 +118,16 @@ small,
   margin-right: var(--margin-sm);
 }
 
-.p-m {
+.p-md {
   padding: var(--padding-md);
 }
 
 .p-sm {
   padding: var(--padding-sm);
+}
+
+.p-none {
+  padding: 0 !important;
 }
 
 /* end spacing */

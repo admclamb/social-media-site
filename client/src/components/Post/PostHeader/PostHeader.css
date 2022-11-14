@@ -1,0 +1,27 @@
+.post-header__container {
+  display: flex;
+}
+
+.post-header__container-sub {
+  margin-left: 0.6rem;
+}
+
+.post-header__header,
+.post-header__description {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.post-header__header {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-header__header:hover {
+  text-decoration: underline;
+}
+
+.post-header__description {
+  font-size: 0.9rem;
+  color: var(--color);
+}

@@ -1,0 +1,7 @@
+.post-image__cointainer {
+}
+
+.post-image__image {
+  object-fit: cover;
+  height: 100%;
+}

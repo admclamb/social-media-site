@@ -10,6 +10,7 @@ export async function up(knex: Knex): Promise<void> {
       .references('user_id')
       .inTable('users')
       .onDelete('CASCADE');
+    table.string('header_image_url').nullable();
     table.string('image_url').nullable();
     table.string('body').notNullable();
     table.specificType('tags', 'text ARRAY').notNullable();

@@ -3,6 +3,7 @@ import { Post as IPost } from '../../ts/interfaces/Post';
 import Card from '../Card/Card';
 import PostFooter from './PostFooter/PostFooter';
 import PostHeader from './PostHeader/PostHeader';
+import PostImage from './PostImage/PostImage';
 
 type Props = {
   post: IPost;
@@ -10,8 +11,9 @@ type Props = {
 
 const Post = ({ post }: Props) => {
   return (
-    <Card>
+    <Card padding="p-none">
       <PostHeader />
+      <PostImage />
       <PostFooter />
     </Card>
   );

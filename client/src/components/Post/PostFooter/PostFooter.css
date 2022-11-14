@@ -1,0 +1,22 @@
+.post-footer__likes-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem var(--padding-md) 0 var(--padding-md);
+}
+
+.post-footer__buttons-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.post-footer__buttons-button {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.post-footer__button:hover {
+  cursor: pointer;
+}
