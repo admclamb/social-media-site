@@ -2,7 +2,7 @@
   display: grid;
   padding-top: 6rem;
   padding-inline: var(--container-gap);
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 .home--nav {
@@ -17,7 +17,4 @@
 
 .home--aside {
   height: 2rem;
-}
-
-@media all and (max-width: ) {
 }

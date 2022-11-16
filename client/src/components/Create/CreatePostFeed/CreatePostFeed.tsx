@@ -12,7 +12,7 @@ const CreatePostFeed = (props: Props) => {
         <ProfileIcon />
         <div className="create-post-feed--form">
           <Link to="/create" className="create-post-feed-input-button input">
-            What's going on?
+            What's on you mind?
           </Link>
         </div>
       </div>
