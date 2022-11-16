@@ -12,7 +12,7 @@ const CreatePostFeed = (props: Props) => {
         <ProfileIcon />
         <div className="create-post-feed--form">
           <Link to="/create" className="create-post-feed-input-button input">
-            What's happening?
+            What's going on?
           </Link>
         </div>
       </div>
@@ -21,12 +21,13 @@ const CreatePostFeed = (props: Props) => {
         <Link to="/create/photo">
           <i className="fa-solid fa-image text-blue fa-lg mr-sm"></i> Photo
         </Link>
-        <Link to="/create/video">
-          <i className="fa-solid fa-video text-green fa-lg mr-sm"></i> Video
+        <Link to="/create/question">
+          <i className="fa-solid fa-message-question text-green fa-lg mr-sm"></i>{' '}
+          Question
         </Link>
         <Link to="/create/article">
           <i className="fa-solid fa-newspaper text-red fa-lg mr-sm"></i>
-          Article
+          Discussion
         </Link>
       </div>
     </Card>

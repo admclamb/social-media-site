@@ -1,0 +1,19 @@
+.tags-ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.tags-ul li:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.tags-tag {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+.tags-tag:hover {
+  text-decoration: underline;
+}
