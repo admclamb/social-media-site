@@ -1,0 +1,28 @@
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  color: var(--color-primary-contrast-text);
+}
+
+.side-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.side-nav ul {
+  list-style-type: none;
+}
+
+.side-nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+.side-nav ul li:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.side-nav ul li a {
+  margin-left: 0.5rem;
+}

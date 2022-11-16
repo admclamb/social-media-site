@@ -18,6 +18,7 @@ const QuestionCard = ({
   comments = 0,
   likes = 0,
   dislikes = 0,
+  answers = 0,
 }: Props) => {
   return (
     <Card>
@@ -43,15 +44,17 @@ const QuestionCard = ({
       <footer className="question-card__footer">
         <Link
           to={`/question/${question_id}`}
-          className="question-card__footer-link"
+          className="question-card__footer-link question-card__likes"
         >
-          {likes} <i className="fa-sharp fa-solid fa-arrow-up fa-lg"></i>
+          <i className="fa-sharp fa-solid fa-arrow-up fa-lg question-card__upvote"></i>
+          {likes}
+          <i className="fa-sharp fa-solid fa-arrow-down fa-lg question-card__downvote"></i>
         </Link>
         <Link
           to={`/question/${question_id}`}
-          className="question-card__footer-link"
+          className="question-card__footer-link question-card__answers"
         >
-          {dislikes} <i className="fa-sharp fa-solid fa-arrow-down fa-lg"></i>
+          {answers} answers
         </Link>
         <Link
           to={`/question/${question_id}`}
