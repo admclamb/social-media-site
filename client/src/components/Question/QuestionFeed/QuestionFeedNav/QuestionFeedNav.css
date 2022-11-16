@@ -1,0 +1,15 @@
+.question-feed-nav {
+}
+
+.question-feed-nav button {
+  background-color: inherit;
+  border: none;
+  padding: 0.7rem;
+  font-size: 1rem;
+  color: var(--color-primary-contrast-text);
+  cursor: pointer;
+}
+
+.question-feed-nav button:not(:last-child) {
+  margin-right: 0.5rem;
+}
