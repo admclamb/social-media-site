@@ -11,7 +11,9 @@ const Layout = ({ children, classes, hasSpacing }: Props) => {
   return (
     <>
       <Navbar />
-      <main className={`${hasSpacing && 'pt-3'} ${classes}`}>{children}</main>
+      <main className={`${hasSpacing && 'pt-3'} ${classes} min-h-screen`}>
+        {children}
+      </main>
     </>
   );
 };

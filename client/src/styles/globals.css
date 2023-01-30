@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  min-height: 100vh;
+}
+
 .custom-container-cols {
   display: grid;
   grid-template-columns: 1fr;
@@ -45,7 +49,7 @@
   }
 
   .custom-container-cols {
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 3fr 7fr 3fr;
   }
 
   .custom-container-cols-right {
@@ -64,9 +68,9 @@
     max-width: 1280px;
   }
 }
-
+/* 
 @media screen and (min-width: 1536px) {
   .custom-container {
     max-width: 1536px;
   }
-}
+} */
