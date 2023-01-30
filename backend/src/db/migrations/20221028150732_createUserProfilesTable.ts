@@ -8,8 +8,11 @@ export async function up(knex: Knex): Promise<void> {
       .references('user_id')
       .inTable('users')
       .onDelete('CASCADE');
-    table.string('first_name').notNullable();
-    table.string('last_name').notNullable();
+    table.string('about');
+    table.string('work');
+    table.string('avatar').notNullable();
+    table.string('primary_color').defaultTo('#000');
+    table.string('secondary_color').defaultTo('#fff');
   });
 }
 
