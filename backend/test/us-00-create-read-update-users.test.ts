@@ -9,7 +9,7 @@ import { app } from '../src/App';
  * => get top 50 users with highest elo rating
  *
  */
-describe('US-00 crud users', () => {
+describe('US-00 create, read, and update users', () => {
   beforeAll(() => {
     return knex.migrate
       .forceFreeMigrationsLock()

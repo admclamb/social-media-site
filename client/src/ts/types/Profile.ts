@@ -1,5 +1,5 @@
 export type Profile = {
-  user_id: number;
+  user_id?: number;
   about: string;
   avatar_url: string;
   work: string;
