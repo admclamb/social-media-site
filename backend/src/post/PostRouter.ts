@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { ErrorHandler } from '../errors/Error';
+import { ErrorHandler } from '../errors/ErrorHandler';
 import { PostController } from './PostController';
 
 export class PostRouter {

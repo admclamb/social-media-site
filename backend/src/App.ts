@@ -1,11 +1,8 @@
 import express, { Application } from 'express';
-
-import { errorHandler } from './errors/errorHandler';
-import { notFound } from './errors/notFound';
-import { userRouter } from './user/user.router';
+import { userRouter } from './user/UserRouter';
 import cors from 'cors';
 import * as path from 'path';
-import { recipeRouter } from './recipe/recipe.router';
+import { ErrorHandler } from './errors/ErrorHandler';
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 export class App {
@@ -16,7 +13,6 @@ export class App {
   }
 
   private setRoutes() {
-    this.instance.use('/recipes', recipeRouter);
     this.instance.use('/users', userRouter);
   }
 
@@ -24,8 +20,8 @@ export class App {
     this.instance.use(cors());
     this.instance.use(express.json());
     this.setRoutes();
-    this.instance.use(notFound);
-    this.instance.use(errorHandler);
+    this.instance.use(ErrorHandler.notFound);
+    this.instance.use(ErrorHandler.errorHandler);
   }
 
   public listen(PORT: string, listener: any) {
