@@ -22,6 +22,7 @@ export class App {
     this.setRoutes();
     this.instance.use(ErrorHandler.notFound);
     this.instance.use(ErrorHandler.errorHandler);
+    console.log(this.instance._router.stack);
   }
 
   public listen(PORT: string, listener: any) {

@@ -12,20 +12,19 @@ export class Seeder {
   }
 
   private connect(): void {
+    const URI = DatabaseConfig.getDatabaseUri();
+    console.log('URI', URI);
     mongoose
-      .connect(DatabaseConfig.getDatabaseUri(), {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-      })
-      .then(console.log('DB connection successful!'));
+      .connect(URI)
+      .then((con) => console.log('DB connection successful!', con.connection))
+      .catch((err) => console.log('OH NO SOMETHING WENT WRONG ', err));
   }
 
   public async inject(): Promise<void> {
     try {
       this.connect();
       const data = JSON.parse(fs.readFileSync(this.file, 'utf-8'));
-      await this.model.create(data);
+      await this.model.create(data).catch(console.log);
       console.log('Data successfully loaded!');
     } catch (error) {
       console.log(error);

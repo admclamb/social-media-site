@@ -12,9 +12,12 @@
     "test:drop-database": "node test/drop-database",
     "test:start": "npx cross-env LOG_LEVEL=warn NODE_ENV=test npm run test:start:run",
     "test:start:run": "run-s test:drop-database start ",
-    "seed:user": "node build/db/seeds/UserDataProvider.ts",
-    "seed:post": "node build/db/seeds/PostDataProvider.ts",
-    "seed:all": "npm:seed:*"
+    "seed:user": "node build/src/db/seeds/UserDataProvider.js --import",
+    "seed:post": "node build/src/db/seeds/PostDataProvider.js --import",
+    "seed:all": "npm:seed:*",
+    "delete:seed:user": "node build/src/db/seeds/UserDataProvider.js --delete",
+    "delete:seed:post": "node build/src/db/seeds/PostDataProvider.js --delete",
+    "delete:seed:all": "npm:delete:seed:*"
   },
   "author": "",
   "license": "ISC",

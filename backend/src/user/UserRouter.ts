@@ -1,17 +1,18 @@
 import * as express from 'express';
+import { ErrorHandler } from '../errors/ErrorHandler';
+import { UserController } from './UserController';
+
 const router = express.Router();
-// import { controller } from './user.controller';
-// import { methodNotAllowed } from '../errors/methodNotAllowed';
 
-// router.route('/login/token').post(controller.loginToken).all(methodNotAllowed);
-// router.route('/login').post(controller.login).all(methodNotAllowed);
-// router.route('/logout').post(controller.logout).all(methodNotAllowed);
-// router
-//   .route('/')
-//   .post(controller.create)
-//   .delete(controller.destroy)
-//   .all(methodNotAllowed);
+router
+  .route('/')
+  .get(UserController.list)
+  .post(UserController.create)
+  .all(ErrorHandler.methodNotAllowed);
 
-
+router
+  .route('/:_id')
+  .get(UserController.read)
+  .all(ErrorHandler.methodNotAllowed);
 
 export const userRouter = router;
