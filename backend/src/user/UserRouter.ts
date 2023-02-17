@@ -8,6 +8,8 @@ router
   .route('/')
   .get(UserController.list)
   .post(UserController.create)
+  .put(UserController.update)
+  .delete(UserController.destroy)
   .all(ErrorHandler.methodNotAllowed);
 
 router
