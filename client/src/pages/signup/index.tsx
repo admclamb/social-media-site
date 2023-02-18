@@ -32,6 +32,8 @@ const Signup = (props: Props) => {
     });
   };
 
+  const handleSubmit = () => {};
+
   return (
     <>
       <Head>
