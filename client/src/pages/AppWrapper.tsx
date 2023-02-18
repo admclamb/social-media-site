@@ -12,6 +12,7 @@ const AppWrapper = ({ children }: Props) => {
     email: '',
     first_name: '',
     last_name: '',
+    password: '',
   });
   const [search, setSearch] = useState<string>('');
   return (

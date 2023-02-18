@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema(
       required: [true, 'A User requires a last_name'],
       type: String,
     },
+    password: {
+      required: [true, 'A User requires a password'],
+      type: String,
+    },
     about: {
       required: false,
       type: String,

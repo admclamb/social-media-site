@@ -15,14 +15,14 @@ export class UserController {
     'primary_color',
     'secondary_color',
     '_id',
+    'password',
   ];
 
   private static requiredProperties = ['email', 'first_name', 'last_name'];
 
   public static async list(req: Request, res: Response, next: NextFunction) {
     try {
-      const data = await User.find();
-      res.status(200).json({ data });
+      res.status(200).json({ data: await User.find() });
     } catch (error) {
       return next({
         status: 500,
