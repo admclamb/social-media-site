@@ -1,4 +1,5 @@
 import { sign, verify } from 'jsonwebtoken';
+import { ObjectId } from 'mongoose';
 
 class UserAuth {
   TOKEN_KEY: string | null = process.env.TOKEN_KEY || null;
@@ -16,7 +17,10 @@ class UserAuth {
     }
   }
 
-  private async generateToken(user_id: number, expiresIn: string) {
+  private async generateToken(
+    user_id: ObjectId,
+    expiresIn: string
+  ): Promise<string> {
     try {
       if (!this.TOKEN_KEY) {
         throw new Error('Key is missing');
@@ -33,12 +37,12 @@ class UserAuth {
     }
   }
 
-  public generateAccessToken(user_id: number) {
-    return this.generateToken(user_id, this.ACCESS_TOKEN_TIMEOUT);
+  public async generateAccessToken(user_id: ObjectId): Promise<string> {
+    return await this.generateToken(user_id, this.ACCESS_TOKEN_TIMEOUT);
   }
 
-  public generateRefreshToken(user_id: number) {
-    return this.generateToken(user_id, this.REFRESH_TOKEN_TIMEOUT);
+  public async generateRefreshToken(user_id: ObjectId): Promise<string> {
+    return await this.generateToken(user_id, this.REFRESH_TOKEN_TIMEOUT);
   }
 }
 

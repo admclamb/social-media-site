@@ -22,7 +22,7 @@ const SignupUser = ({
       <h1 className="text-center font-semibold text-lg">
         Welcome to Devify Community
       </h1>
-      <form className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <div className="form-group flex flex-col gap-1">
           <label htmlFor="email">Email</label>
           <input
@@ -79,7 +79,7 @@ const SignupUser = ({
             Log in here.
           </Link>
         </p>
-      </form>
+      </div>
     </Card>
   );
 };

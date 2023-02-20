@@ -1,13 +1,15 @@
+import { UserApi } from '@/api/UserApi';
 import Card from '@/components/Card/Card';
 import SignupProfile from '@/components/Signup/SignupProfile/SignupProfile';
 import SignupUser from '@/components/Signup/SignupUser/SignupUser';
+import { UserContext } from '@/context/UserContext';
 import Layout from '@/layout/Layout';
 import { Profile } from '@/ts/types/Profile';
 import { User } from '@/ts/types/User';
 import Head from 'next/head';
 import Link from 'next/link';
 import { stringify } from 'querystring';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 type Props = {};
 
@@ -22,6 +24,7 @@ const Signup = (props: Props) => {
     about: '',
     work: '',
   });
+  const { setUser } = useContext(UserContext);
   const [currSignupPage, setCurrSignupPage] = useState('signup');
   const handleSignupChange = ({ target: { value, id } }) => {
     setSignup((curr) => {
@@ -32,7 +35,15 @@ const Signup = (props: Props) => {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(signup, profile);
+    const response = await UserApi.create(signup, profile);
+    console.log(response);
+    if (response.data) {
+      setUser(response);
+    }
+  };
 
   return (
     <>
@@ -40,19 +51,21 @@ const Signup = (props: Props) => {
         <title>Signup</title>
       </Head>
       <Layout classes="bg-gray-100" hasSpacing>
-        {currSignupPage === 'signup' ? (
-          <SignupUser
-            signup={signup}
-            handleSignupChange={handleSignupChange}
-            setCurrSignupPage={setCurrSignupPage}
-          />
-        ) : currSignupPage === 'about' ? (
-          <SignupProfile
-            profile={profile}
-            handleProfileChange={handleSignupChange}
-            setCurrSignupPage={setCurrSignupPage}
-          />
-        ) : null}
+        <form onSubmit={handleSubmit}>
+          {currSignupPage === 'signup' ? (
+            <SignupUser
+              signup={signup}
+              handleSignupChange={handleSignupChange}
+              setCurrSignupPage={setCurrSignupPage}
+            />
+          ) : currSignupPage === 'about' ? (
+            <SignupProfile
+              profile={profile}
+              handleProfileChange={handleSignupChange}
+              setCurrSignupPage={setCurrSignupPage}
+            />
+          ) : null}
+        </form>
       </Layout>
     </>
   );

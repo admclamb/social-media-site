@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { userAuth } from '../auth/UserAuth';
 import { User } from '../db/models/UserModel';
 import { DatabaseErrorHandler } from '../errors/DatabaseErrorHandler';
 import { DataValidator } from '../utils/DataValidator';
@@ -47,13 +48,23 @@ export class UserController {
   public static async create(req: Request, res: Response, next: NextFunction) {
     try {
       const { data } = req.body;
+      console.log('DATA: ', data);
       DataValidator.hasValidProperties(UserController.validProperties, data);
       DataValidator.hasRequiredProperties(
         UserController.requiredProperties,
         data
       );
       const createdUser = await User.create(data);
-      res.status(200).json({ data: createdUser });
+      const accessToken = await userAuth.generateAccessToken(createdUser._id);
+      const refreshToken = await userAuth.generateRefreshToken(createdUser._id);
+      res
+        .cookie('access_token', accessToken, {
+          httpOnly: true,
+          secure: false,
+          expires: new Date(Date.now() + 8 * 3600000),
+        })
+        .status(200)
+        .json({ data: createdUser, refreshToken });
     } catch (error) {
       console.log(error);
       return next(DatabaseErrorHandler.handleError(error));

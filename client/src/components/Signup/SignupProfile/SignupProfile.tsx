@@ -22,7 +22,7 @@ const SignupProfile = ({
       <h1 className="text-center font-semibold text-lg">
         Tell Us About Yourself
       </h1>
-      <form className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <div className="form-group flex flex-col">
           <label htmlFor="about">About You</label>
           <input
@@ -52,11 +52,14 @@ const SignupProfile = ({
           >
             Previous
           </button>
-          <button className="py-2 px-3 bg-indigo-800 text-white rounded w-[8rem]">
+          <button
+            type="submit"
+            className="py-2 px-3 bg-indigo-800 text-white rounded w-[8rem]"
+          >
             Next
           </button>
         </div>
-      </form>
+      </div>
     </Card>
   );
 };

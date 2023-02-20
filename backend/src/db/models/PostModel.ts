@@ -21,28 +21,9 @@ const PostSchema = new mongoose.Schema(
     },
     comments: [
       {
-        author: {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-          required: [true, 'A Comment requires an author'],
-        },
-        body: {
-          type: String,
-          required: [true, 'A Comment requires a body'],
-        },
-        likes: {
-          type: [
-            {
-              type: Schema.Types.ObjectId,
-              ref: 'User',
-              unique: [true, 'A like on comment needs to be unique'],
-            },
-          ],
-        },
-        timestamps: {
-          createdAt: 'created_at',
-          updatedAt: 'updated_at',
-        },
+        type: Schema.Types.ObjectId,
+        ref: 'Comment',
+        required: true,
       },
     ],
     likes: {

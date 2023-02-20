@@ -1,10 +1,20 @@
+import { Post } from '../models/PostModel';
 import * as POST_DATA from './PostData.json';
 import { Seeder } from './Seeder';
 export class PostDataProvider {
-  private static data = POST_DATA;
-
   public static seed(): void {
-    const seeder = new Seeder(this.data);
+    const seeder = new Seeder(`${__dirname}/PostData.json`, Post);
     seeder.inject();
   }
+
+  public static delete(): void {
+    const seeder = new Seeder(`${__dirname}/PostData.json`, Post);
+    seeder.delete();
+  }
+}
+
+if (process.argv[2] === '--import') {
+  PostDataProvider.seed();
+} else if (process.argv[2] === '--delete') {
+  PostDataProvider.delete();
 }

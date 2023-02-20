@@ -1,7 +1,8 @@
+import { UserApi } from '@/api/UserApi';
 import { SearchContext, UserContext } from '@/context/UserContext';
 import { User } from '@/ts/types/User';
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { storage } from '../utils/Storage';
 type Props = {
   children: React.ReactNode;
 };
@@ -15,6 +16,23 @@ const AppWrapper = ({ children }: Props) => {
     password: '',
   });
   const [search, setSearch] = useState<string>('');
+  useEffect(() => {
+    const foundRefreshToken = storage.local.get('refreshToken');
+    if (foundRefreshToken) {
+      (async () => {
+        try {
+          const response = await UserApi.loginWithToken(foundRefreshToken);
+          if (response.data) {
+            storage.local.set('refreshToken', response.data.refreshToken);
+            delete response.data.refreshToken;
+            setUser(response.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, []);
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <SearchContext.Provider value={{ search, setSearch }}>
