@@ -4,6 +4,7 @@ import SignupProfile from '@/components/Signup/SignupProfile/SignupProfile';
 import SignupUser from '@/components/Signup/SignupUser/SignupUser';
 import { UserContext } from '@/context/UserContext';
 import Layout from '@/layout/Layout';
+import { Error } from '@/ts/types/Error';
 import { Profile } from '@/ts/types/Profile';
 import { User } from '@/ts/types/User';
 import Head from 'next/head';
@@ -23,8 +24,13 @@ const Signup = (props: Props) => {
   const [profile, setProfile] = useState<Profile>({
     about: '',
     work: '',
+    avatar_url: '',
+    skills: [],
+    brand_primary: '#000',
+    brand_secondary: '#fff',
   });
   const { setUser } = useContext(UserContext);
+  const [error, setError] = useState<Error>({});
   const [currSignupPage, setCurrSignupPage] = useState('signup');
   const handleSignupChange = ({ target: { value, id } }) => {
     setSignup((curr) => {
@@ -36,12 +42,17 @@ const Signup = (props: Props) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(signup, profile);
-    const response = await UserApi.create(signup, profile);
-    console.log(response);
-    if (response.data) {
-      setUser(response);
+    try {
+      setError({});
+      event.preventDefault();
+      console.log(signup, profile);
+      const response = await UserApi.create(signup, profile);
+      console.log(response);
+      if (response.data) {
+        setUser(response);
+      }
+    } catch (error: any) {
+      setError({ message: error.message });
     }
   };
 

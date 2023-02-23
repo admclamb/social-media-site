@@ -1,6 +1,9 @@
 class Storage {
   storage;
-  constructor(getStorage = () => window.localStorage) {
+  constructor(
+    getStorage = () =>
+      typeof window !== 'undefined' ? window.localStorage : {}
+  ) {
     this.storage = getStorage();
   }
 
@@ -20,5 +23,4 @@ class Storage {
 
 export const storage = {
   local: new Storage(),
-  session: new Storage(() => window.sessionStorage),
 };
