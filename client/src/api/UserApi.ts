@@ -38,8 +38,21 @@ export class UserApi extends Api {
     return this.fetchJson<{}>(path, options, {});
   }
 
-  public async loginWithToken(refreshToken: string) {
+  public async login(login: {}) {
     const path = '/users/login';
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        data: {
+          ...login,
+        },
+      }),
+    };
+    return this.fetchJson<{}>(path, options, {});
+  }
+
+  public async loginWithToken(refreshToken: string) {
+    const path = '/users/login/token';
     const options = {
       method: 'POST',
       body: JSON.stringify({

@@ -4,6 +4,7 @@ import Card from '@/components/Card/Card';
 import ErrorAlert from '@/errors/ErrorAlert';
 import { Error } from '@/ts/types/Error';
 import Layout from '@/layout/Layout';
+import { UserApi } from '@/api/UserApi';
 type Props = {};
 
 const Login = (props: Props) => {
@@ -27,6 +28,8 @@ const Login = (props: Props) => {
     try {
       event.preventDefault();
       setSubmitText('Loading...');
+      const response = await UserApi.getInstance().login(login);
+      console.log(response);
       setError({});
     } catch (error: any) {
       setError({ message: error.message });
@@ -75,7 +78,7 @@ const Login = (props: Props) => {
                   type="submit"
                   className="py-2 px-3 bg-indigo-800 text-white rounded w-[8rem]"
                 >
-                  Continue
+                  {submitText}
                 </button>
               </div>
             </div>

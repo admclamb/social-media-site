@@ -13,6 +13,11 @@ router
   .all(ErrorHandler.methodNotAllowed);
 
 router
+  .route('/login')
+  .post(UserController.login)
+  .all(ErrorHandler.methodNotAllowed);
+
+router
   .route('/:_id')
   .get(UserController.read)
   .all(ErrorHandler.methodNotAllowed);

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { userAuth } from '../auth/UserAuth';
+import { UserAuth } from '../auth/UserAuth';
 import { User } from '../db/models/UserModel';
 import { DatabaseErrorHandler } from '../errors/DatabaseErrorHandler';
 import { DataValidator } from '../utils/DataValidator';
@@ -112,6 +112,35 @@ export class UserController {
       return next({
         status: 400,
         message: 'User id not found.',
+      });
+    } catch (error) {
+      console.log(error);
+      return next(DatabaseErrorHandler.handleError(error));
+    }
+  }
+
+  public static async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, password } = req.body.data;
+      const foundAccount = await User.findOne({ email });
+      if (foundAccount) {
+        if (foundAccount.password === password) {
+          const access_token = await UserAuth.generateAccessToken(
+            foundAccount.user_id
+          );
+          const refresh_token = await userAuth.generateRefreshToken(
+            foundAccount.user_id
+          );
+          return next();
+        }
+        return next({
+          status: 400,
+          message: 'User password is incorrect',
+        });
+      }
+      return next({
+        status: 404,
+        message: 'User email not found.',
       });
     } catch (error) {
       console.log(error);
