@@ -17,6 +17,7 @@ export class UserController {
     'secondary_color',
     '_id',
     'password',
+    'skills',
   ];
 
   private static requiredProperties = ['email', 'first_name', 'last_name'];

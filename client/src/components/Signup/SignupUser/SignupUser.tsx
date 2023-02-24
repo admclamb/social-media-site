@@ -18,7 +18,7 @@ const SignupUser = ({
   setCurrSignupPage,
 }: Props) => {
   return (
-    <Card className="custom-form-container mx-auto" padding="px-5 py-3">
+    <>
       <h1 className="text-center font-semibold text-lg">
         Welcome to Devify Community
       </h1>
@@ -80,7 +80,7 @@ const SignupUser = ({
           </Link>
         </p>
       </div>
-    </Card>
+    </>
   );
 };
 

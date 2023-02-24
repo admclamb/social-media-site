@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema(
       required: false,
       type: String,
     },
+    skills: {
+      type: [],
+      defaultTo: [],
+    },
     avatar: {
       required: false,
       type: String,

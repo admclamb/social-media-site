@@ -6,7 +6,7 @@ export class UserApi extends Api {
   private static instance: UserApi;
 
   private constructor() {
-    const baseUrl = process.env.BACKEND_BASE_URL || '';
+    const baseUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL || '';
     if (!baseUrl) {
       throw new Error('No base url has been provided');
     }
@@ -19,24 +19,26 @@ export class UserApi extends Api {
     if (!UserApi.instance) {
       UserApi.instance = new UserApi();
     }
+    console.log(UserApi.instance);
     return UserApi.instance;
   }
 
-  public static async create(user: User, profile: Profile) {
+  public async create(user: User, profile: Profile) {
     const path = '/users';
     const options = {
       method: 'POST',
       body: JSON.stringify({
         data: {
           ...user,
-          profile,
+          ...profile,
         },
       }),
     };
+    console.log(path, options);
     return this.fetchJson<{}>(path, options, {});
   }
 
-  public static async loginWithToken(refreshToken: string) {
+  public async loginWithToken(refreshToken: string) {
     const path = '/users/login';
     const options = {
       method: 'POST',

@@ -10,15 +10,17 @@ type Props = {
     target: { value: any; id: any };
   }) => void;
   setCurrSignupPage: (arg0: string) => void;
+  handleSubmit: any;
 };
 
 const SignupProfile = ({
   profile,
   handleProfileChange,
   setCurrSignupPage,
+  handleSubmit,
 }: Props) => {
   return (
-    <Card className="custom-form-container mx-auto" padding="p-5">
+    <>
       <h1 className="text-center font-semibold text-lg">
         Tell Us About Yourself
       </h1>
@@ -53,6 +55,7 @@ const SignupProfile = ({
             Previous
           </button>
           <button
+            onClick={handleSubmit}
             type="submit"
             className="py-2 px-3 bg-indigo-800 text-white rounded w-[8rem]"
           >
@@ -60,7 +63,7 @@ const SignupProfile = ({
           </button>
         </div>
       </div>
-    </Card>
+    </>
   );
 };
 

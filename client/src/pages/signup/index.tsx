@@ -1,5 +1,7 @@
-import { UserApi } from '@/api/UserApi';
+import React, { useContext, useState } from 'react';
+import Head from 'next/head';
 import Card from '@/components/Card/Card';
+import { UserApi } from '@/api/UserApi';
 import SignupProfile from '@/components/Signup/SignupProfile/SignupProfile';
 import SignupUser from '@/components/Signup/SignupUser/SignupUser';
 import { UserContext } from '@/context/UserContext';
@@ -7,10 +9,8 @@ import Layout from '@/layout/Layout';
 import { Error } from '@/ts/types/Error';
 import { Profile } from '@/ts/types/Profile';
 import { User } from '@/ts/types/User';
-import Head from 'next/head';
-import Link from 'next/link';
-import { stringify } from 'querystring';
-import React, { useContext, useState } from 'react';
+
+import ErrorAlert from '@/errors/ErrorAlert';
 
 type Props = {};
 
@@ -24,10 +24,10 @@ const Signup = (props: Props) => {
   const [profile, setProfile] = useState<Profile>({
     about: '',
     work: '',
-    avatar_url: '',
+    avatar: '',
     skills: [],
-    brand_primary: '#000',
-    brand_secondary: '#fff',
+    primary_color: '#000',
+    secondary_color: '#fff',
   });
   const { setUser } = useContext(UserContext);
   const [error, setError] = useState<Error>({});
@@ -41,16 +41,14 @@ const Signup = (props: Props) => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     try {
-      setError({});
       event.preventDefault();
+      setError({});
       console.log(signup, profile);
-      const response = await UserApi.create(signup, profile);
+      const response = await UserApi.getInstance().create(signup, profile);
       console.log(response);
-      if (response.data) {
-        setUser(response);
-      }
+      setUser(response);
     } catch (error: any) {
       setError({ message: error.message });
     }
@@ -62,21 +60,25 @@ const Signup = (props: Props) => {
         <title>Signup</title>
       </Head>
       <Layout classes="bg-gray-100" hasSpacing>
-        <form onSubmit={handleSubmit}>
-          {currSignupPage === 'signup' ? (
-            <SignupUser
-              signup={signup}
-              handleSignupChange={handleSignupChange}
-              setCurrSignupPage={setCurrSignupPage}
-            />
-          ) : currSignupPage === 'about' ? (
-            <SignupProfile
-              profile={profile}
-              handleProfileChange={handleSignupChange}
-              setCurrSignupPage={setCurrSignupPage}
-            />
-          ) : null}
-        </form>
+        <Card className="custom-form-container mx-auto" padding="p-5">
+          <ErrorAlert error={error} className="mb-2" />
+          <form>
+            {currSignupPage === 'signup' ? (
+              <SignupUser
+                signup={signup}
+                handleSignupChange={handleSignupChange}
+                setCurrSignupPage={setCurrSignupPage}
+              />
+            ) : currSignupPage === 'about' ? (
+              <SignupProfile
+                profile={profile}
+                handleProfileChange={handleSignupChange}
+                setCurrSignupPage={setCurrSignupPage}
+                handleSubmit={handleSubmit}
+              />
+            ) : null}
+          </form>
+        </Card>
       </Layout>
     </>
   );
