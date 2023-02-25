@@ -131,7 +131,15 @@ export class UserController {
           const refresh_token = await userAuth.generateRefreshToken(
             foundAccount.user_id
           );
-          return next();
+          delete foundAccount.password;
+          return res
+            .cookie('access_token', access_token, {
+              httpOnly: true,
+              secure: false,
+              expires: new Date(Date.now() + 8 * 3600000), // 8 hours
+            })
+            .status(200)
+            .json({ data: { ...foundAccount, refresh_token } });
         }
         return next({
           status: 400,
@@ -141,6 +149,37 @@ export class UserController {
       return next({
         status: 404,
         message: 'User email not found.',
+      });
+    } catch (error) {
+      console.log(error);
+      return next(DatabaseErrorHandler.handleError(error));
+    }
+  }
+
+  public static async loginWithToken(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const { access_token = '' } = req.cookies;
+      const { refresh_token = '' } = req.body.data;
+      if (!access_token || !refresh_token) {
+        return next({
+          status: 400,
+          message: 'Error authenticating tokens.',
+        });
+      }
+      const access_data = await UserAuth.authorize(access_token);
+      const refresh_data = await UserAuth.authorize(refresh_token);
+      if (access_data === refresh_data) {
+        const foundUser = await User.find({ user_id: access_data });
+        delete foundUser.password;
+        res.status(200).json({ data: foundUser });
+      }
+      return next({
+        status: 400,
+        message: 'Error authenticating tokens.',
       });
     } catch (error) {
       console.log(error);

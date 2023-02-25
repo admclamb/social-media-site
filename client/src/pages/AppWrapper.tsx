@@ -21,11 +21,13 @@ const AppWrapper = ({ children }: Props) => {
     if (foundRefreshToken) {
       (async () => {
         try {
-          const response = await UserApi.loginWithToken(foundRefreshToken);
-          if (response.data) {
-            storage.local.set('refreshToken', response.data.refreshToken);
-            delete response.data.refreshToken;
-            setUser(response.data);
+          const response = await UserApi.getInstance().loginWithToken(
+            foundRefreshToken
+          );
+          if (response) {
+            storage.local.set('refreshToken', response.refreshToken);
+            delete response.refreshToken;
+            setUser(response);
           }
         } catch (error) {
           console.log(error);

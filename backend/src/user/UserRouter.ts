@@ -18,6 +18,11 @@ router
   .all(ErrorHandler.methodNotAllowed);
 
 router
+  .route('/login/token')
+  .post(UserController.loginWithToken)
+  .all(ErrorHandler.methodNotAllowed);
+
+router
   .route('/:_id')
   .get(UserController.read)
   .all(ErrorHandler.methodNotAllowed);

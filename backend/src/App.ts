@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import { userRouter } from './user/UserRouter';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import * as path from 'path';
 import { ErrorHandler } from './errors/ErrorHandler';
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
@@ -17,6 +18,7 @@ export class App {
   }
 
   public config() {
+    this.instance.use(cookieParser());
     this.instance.use(cors());
     this.instance.use(express.json());
     this.setRoutes();

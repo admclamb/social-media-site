@@ -1,14 +1,14 @@
 import { sign, verify } from 'jsonwebtoken';
 import { ObjectId } from 'mongoose';
 
-class UserAuth {
+export class UserAuth {
   private static TOKEN_KEY: string = process.env.TOKEN_KEY || '';
   private static ACCESS_TOKEN_TIMEOUT: string = '1h';
   private static REFRESH_TOKEN_TIMEOUT: string = '10d';
 
   private constructor() {}
 
-  public authorize(token: string) {
+  public static async authorize(token: string) {
     if (!UserAuth.TOKEN_KEY) {
       throw new Error('No Token Key has been provided.');
     }
@@ -31,6 +31,7 @@ class UserAuth {
     expiresIn: string
   ): Promise<string> {
     try {
+      console.log('TOKEN', UserAuth.TOKEN_KEY);
       if (!UserAuth.TOKEN_KEY) {
         throw new Error('Key is missing');
       }
