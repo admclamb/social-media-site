@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import Head from 'next/head';
+import { NextResponse } from 'next/server';
 import Card from '@/components/Card/Card';
 import ErrorAlert from '@/errors/ErrorAlert';
 import { Error } from '@/ts/types/Error';
 import Layout from '@/layout/Layout';
 import { UserApi } from '@/api/UserApi';
 import { UserContext } from '@/context/UserContext';
+import { storage } from '@/utils/Storage';
 type Props = {};
 
 const Login = (props: Props) => {
@@ -32,6 +34,9 @@ const Login = (props: Props) => {
       setSubmitText('Loading...');
       const response = await UserApi.getInstance().login(login);
       console.log(response);
+      storage.local.set('refreshToken', response.refreshToken);
+      setUser(response);
+      NextResponse.redirect('/');
     } catch (error: any) {
       setError({ message: error.message });
     } finally {

@@ -56,8 +56,12 @@ export class UserController {
         data
       );
       const createdUser = await User.create(data);
-      const accessToken = await userAuth.generateAccessToken(createdUser._id);
-      const refreshToken = await userAuth.generateRefreshToken(createdUser._id);
+      const accessToken = await UserAuth.getInstance().generateAccessToken(
+        createdUser._id
+      );
+      const refreshToken = await UserAuth.getInstance().generateRefreshToken(
+        createdUser._id
+      );
       res
         .cookie('access_token', accessToken, {
           httpOnly: true,
@@ -125,7 +129,8 @@ export class UserController {
       const foundAccount = await User.findOne({ email });
       if (foundAccount) {
         if (foundAccount.password === password) {
-          const access_token = await UserAuth.generateAccessToken(
+          const userAuth = UserAuth.getInstance();
+          const access_token = await userAuth.generateAccessToken(
             foundAccount.user_id
           );
           const refresh_token = await userAuth.generateRefreshToken(
@@ -170,8 +175,9 @@ export class UserController {
           message: 'Error authenticating tokens.',
         });
       }
-      const access_data = await UserAuth.authorize(access_token);
-      const refresh_data = await UserAuth.authorize(refresh_token);
+      const userAuth = UserAuth.getInstance();
+      const access_data = await userAuth.authorize(access_token);
+      const refresh_data = await userAuth.authorize(refresh_token);
       if (access_data === refresh_data) {
         const foundUser = await User.find({ user_id: access_data });
         delete foundUser.password;

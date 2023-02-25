@@ -2,44 +2,50 @@ import { sign, verify } from 'jsonwebtoken';
 import { ObjectId } from 'mongoose';
 
 export class UserAuth {
-  private static TOKEN_KEY: string = process.env.TOKEN_KEY || '';
-  private static ACCESS_TOKEN_TIMEOUT: string = '1h';
-  private static REFRESH_TOKEN_TIMEOUT: string = '10d';
+  private static instance: UserAuth;
 
-  private constructor() {}
+  private tokenKey: string;
+  private accessTokenTimeout: string;
+  private refreshTokenTimeout: string;
 
-  public static async authorize(token: string) {
-    if (!UserAuth.TOKEN_KEY) {
+  private constructor() {
+    if (!process.env.TOKEN_KEY) {
       throw new Error('No Token Key has been provided.');
     }
-    if (!UserAuth.ACCESS_TOKEN_TIMEOUT) {
-      throw new Error('No Access Token timeout provided.');
+    this.tokenKey = process.env.TOKEN_KEY || '';
+    this.accessTokenTimeout = '1h';
+    this.refreshTokenTimeout = '10d';
+  }
+
+  public static getInstance() {
+    if (!UserAuth.instance) {
+      UserAuth.instance = new UserAuth();
     }
-    if (!UserAuth.REFRESH_TOKEN_TIMEOUT) {
-      throw new Error('No Refresh Token timeout provided.');
-    }
+    return UserAuth.instance;
+  }
+
+  public async authorize(token: string) {
     try {
-      const data = verify(token, UserAuth.TOKEN_KEY);
+      const data = verify(token, this.tokenKey);
       return data;
     } catch (error) {
       return error;
     }
   }
 
-  private static async generateToken(
+  private async generateToken(
     user_id: ObjectId,
     expiresIn: string
   ): Promise<string> {
     try {
-      console.log('TOKEN', UserAuth.TOKEN_KEY);
-      if (!UserAuth.TOKEN_KEY) {
+      if (!this.tokenKey) {
         throw new Error('Key is missing');
       }
       return sign(
         {
           data: user_id,
         },
-        UserAuth.TOKEN_KEY,
+        this.tokenKey,
         { expiresIn }
       );
     } catch (error) {
@@ -47,11 +53,11 @@ export class UserAuth {
     }
   }
 
-  public static async generateAccessToken(user_id: ObjectId): Promise<string> {
-    return await this.generateToken(user_id, this.ACCESS_TOKEN_TIMEOUT);
+  public async generateAccessToken(user_id: ObjectId): Promise<string> {
+    return await this.generateToken(user_id, this.accessTokenTimeout);
   }
 
-  public static async generateRefreshToken(user_id: ObjectId): Promise<string> {
-    return await this.generateToken(user_id, this.REFRESH_TOKEN_TIMEOUT);
+  public async generateRefreshToken(user_id: ObjectId): Promise<string> {
+    return await this.generateToken(user_id, this.refreshTokenTimeout);
   }
 }
