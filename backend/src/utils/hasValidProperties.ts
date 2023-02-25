@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
 export function hasValidProperties(validProperties: string[]) {
-  console.log('in here');
   return function (req: Request, res: Response, next: NextFunction) {
     const { data = {} } = req.body;
     const invalidFields: string[] = Object.keys(data).filter(

@@ -45,9 +45,7 @@ const Signup = (props: Props) => {
     try {
       event.preventDefault();
       setError({});
-      console.log(signup, profile);
       const response = await UserApi.getInstance().create(signup, profile);
-      console.log(response);
       setUser(response);
     } catch (error: any) {
       setError({ message: error.message });

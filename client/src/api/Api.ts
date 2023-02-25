@@ -13,12 +13,10 @@ export class Api {
     onCancel: T
   ): Promise<T> {
     try {
-      console.log(path, options);
       const response = await fetch(this.baseUrl + path, {
         headers: this.headers,
         ...options,
       });
-      console.log(response);
       if (response.status === 204) {
         return onCancel;
       }

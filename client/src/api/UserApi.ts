@@ -19,7 +19,6 @@ export class UserApi extends Api {
     if (!UserApi.instance) {
       UserApi.instance = new UserApi();
     }
-    console.log(UserApi.instance);
     return UserApi.instance;
   }
 

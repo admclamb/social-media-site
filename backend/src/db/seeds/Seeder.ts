@@ -13,7 +13,6 @@ export class Seeder {
 
   private connect(): void {
     const URI = DatabaseConfig.getDatabaseUri();
-    console.log('URI', URI);
     mongoose
       .connect(URI)
       .then((con) => console.log('DB connection successful!', con.connection))

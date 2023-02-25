@@ -18,7 +18,6 @@ export class App {
   }
 
   public config() {
-    console.log('FEURL: ', FRONT_END_URL);
     if (!FRONT_END_URL) {
       throw new Error('No front end URL was provided for cors options.');
     }
@@ -36,7 +35,6 @@ export class App {
     this.setRoutes();
     this.instance.use(ErrorHandler.notFound);
     this.instance.use(ErrorHandler.errorHandler);
-    console.log(this.instance._router.stack);
   }
 
   public listen(PORT: string, listener: any) {

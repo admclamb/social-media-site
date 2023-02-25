@@ -1,10 +1,14 @@
 import Card from '@/components/Card/Card';
 import ContainerColumns from '@/components/Container/ContainerColumns/ContainerColumns';
+import { UserContext } from '@/context/UserContext';
 import Layout from '@/layout/Layout';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useContext } from 'react';
 
 export default function Home() {
+  const { user } = useContext(UserContext);
+  console.log(user);
   return (
     <>
       <Head>

@@ -3,6 +3,7 @@ import { UserAuth } from '../auth/UserAuth';
 import { User } from '../db/models/UserModel';
 import { DatabaseErrorHandler } from '../errors/DatabaseErrorHandler';
 import { DataValidator } from '../utils/DataValidator';
+import mongoose from 'mongoose';
 const { SALT = '5' } = process.env;
 
 export class UserController {
@@ -49,7 +50,6 @@ export class UserController {
   public static async create(req: Request, res: Response, next: NextFunction) {
     try {
       const { data } = req.body;
-      console.log('DATA: ', data);
       DataValidator.hasValidProperties(UserController.validProperties, data);
       DataValidator.hasRequiredProperties(
         UserController.requiredProperties,
@@ -165,7 +165,6 @@ export class UserController {
     try {
       const { access_token = '' } = req.cookies;
       const { refresh_token = '' } = req.body.data;
-      console.log('AT: ', access_token, 'RT: ', refresh_token);
       if (!access_token || !refresh_token) {
         return next({
           status: 400,
@@ -175,8 +174,15 @@ export class UserController {
       const userAuth = UserAuth.getInstance();
       const access_data = await userAuth.authorize(access_token);
       const refresh_data = await userAuth.authorize(refresh_token);
-      if (access_data.data === refresh_data.data) {
-        const user = await User.find({ user_id: access_data.data });
+      console.log('AD: ', access_data, 'RD: ', refresh_data);
+      if (
+        access_data.data &&
+        refresh_data.data &&
+        access_data.data === refresh_data.data
+      ) {
+        const user = await User.find({
+          id: mongoose.Types.ObjectId(access_data.data),
+        });
         const newRefreshToken = await userAuth.generateRefreshToken(user._id);
         const newAccessToken = await userAuth.generateAccessToken(user._id);
         delete user.password;
