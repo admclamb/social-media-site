@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import Head from 'next/head';
-import { NextResponse } from 'next/server';
 import Card from '@/components/Card/Card';
 import ErrorAlert from '@/errors/ErrorAlert';
 import { Error } from '@/ts/types/Error';
@@ -8,6 +7,7 @@ import Layout from '@/layout/Layout';
 import { UserApi } from '@/api/UserApi';
 import { UserContext } from '@/context/UserContext';
 import { storage } from '@/utils/Storage';
+import { useRouter } from 'next/router';
 type Props = {};
 
 const Login = (props: Props) => {
@@ -18,6 +18,7 @@ const Login = (props: Props) => {
   });
   const [submitText, setSubmitText] = useState<string>('Continue');
   const { setUser } = useContext(UserContext);
+  const router = useRouter();
   const handleChange = ({ target: { value, id } }) => {
     setLogin((curr) => {
       return {
@@ -34,9 +35,9 @@ const Login = (props: Props) => {
       setSubmitText('Loading...');
       const response = await UserApi.getInstance().login(login);
       console.log(response);
-      storage.local.set('refreshToken', response.refreshToken);
-      setUser(response);
-      NextResponse.redirect('/');
+      storage.local.set('refresh_token', response.refresh_token);
+      setUser(response.user);
+      router.push('/');
     } catch (error: any) {
       setError({ message: error.message });
     } finally {

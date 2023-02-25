@@ -17,7 +17,8 @@ const AppWrapper = ({ children }: Props) => {
   });
   const [search, setSearch] = useState<string>('');
   useEffect(() => {
-    const foundRefreshToken = storage.local.get('refreshToken');
+    const foundRefreshToken = storage.local.get('refresh_token');
+    console.log(foundRefreshToken);
     if (foundRefreshToken) {
       (async () => {
         try {
@@ -25,8 +26,8 @@ const AppWrapper = ({ children }: Props) => {
             foundRefreshToken
           );
           if (response) {
-            storage.local.set('refreshToken', response.refreshToken);
-            delete response.refreshToken;
+            storage.local.set('refresh_token', response.refresh_token);
+            delete response.refresh_token;
             setUser(response);
           }
         } catch (error) {

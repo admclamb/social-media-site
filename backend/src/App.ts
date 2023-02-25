@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import * as path from 'path';
 import { ErrorHandler } from './errors/ErrorHandler';
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
-
+const { FRONT_END_URL = 'http://localhost:3000' } = process.env;
 export class App {
   instance: Application;
 
@@ -18,8 +18,20 @@ export class App {
   }
 
   public config() {
+    console.log('FEURL: ', FRONT_END_URL);
+    if (!FRONT_END_URL) {
+      throw new Error('No front end URL was provided for cors options.');
+    }
+
+    const corsOptions = {
+      origin: FRONT_END_URL,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      credentials: true,
+      optionsSuccessStatus: 204,
+    };
     this.instance.use(cookieParser());
-    this.instance.use(cors());
+    this.instance.use(cors(corsOptions));
     this.instance.use(express.json());
     this.setRoutes();
     this.instance.use(ErrorHandler.notFound);

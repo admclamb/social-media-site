@@ -33,8 +33,8 @@ export class UserApi extends Api {
           ...profile,
         },
       }),
+      credentials: 'include',
     };
-    console.log(path, options);
     return this.fetchJson<{}>(path, options, {});
   }
 
@@ -47,19 +47,21 @@ export class UserApi extends Api {
           ...login,
         },
       }),
+      credentials: 'include',
     };
     return this.fetchJson<{}>(path, options, {});
   }
 
-  public async loginWithToken(refreshToken: string) {
+  public async loginWithToken(refresh_token: string) {
     const path = '/users/login/token';
     const options = {
       method: 'POST',
       body: JSON.stringify({
         data: {
-          refreshToken,
+          refresh_token,
         },
       }),
+      credentials: 'include',
     };
     return this.fetchJson(path, options, {});
   }

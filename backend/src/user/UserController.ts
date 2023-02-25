@@ -126,17 +126,13 @@ export class UserController {
   public static async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body.data;
-      const foundAccount = await User.findOne({ email });
-      if (foundAccount) {
-        if (foundAccount.password === password) {
+      const user = await User.findOne({ email });
+      if (user) {
+        if (user.password === password) {
           const userAuth = UserAuth.getInstance();
-          const access_token = await userAuth.generateAccessToken(
-            foundAccount.user_id
-          );
-          const refresh_token = await userAuth.generateRefreshToken(
-            foundAccount.user_id
-          );
-          delete foundAccount.password;
+          const access_token = await userAuth.generateAccessToken(user._id);
+          const refresh_token = await userAuth.generateRefreshToken(user._id);
+          delete user.password;
           return res
             .cookie('access_token', access_token, {
               httpOnly: true,
@@ -144,7 +140,7 @@ export class UserController {
               expires: new Date(Date.now() + 8 * 3600000), // 8 hours
             })
             .status(200)
-            .json({ data: { ...foundAccount, refresh_token } });
+            .json({ data: { user, refresh_token } });
         }
         return next({
           status: 400,
@@ -169,6 +165,7 @@ export class UserController {
     try {
       const { access_token = '' } = req.cookies;
       const { refresh_token = '' } = req.body.data;
+      console.log('AT: ', access_token, 'RT: ', refresh_token);
       if (!access_token || !refresh_token) {
         return next({
           status: 400,
@@ -178,10 +175,19 @@ export class UserController {
       const userAuth = UserAuth.getInstance();
       const access_data = await userAuth.authorize(access_token);
       const refresh_data = await userAuth.authorize(refresh_token);
-      if (access_data === refresh_data) {
-        const foundUser = await User.find({ user_id: access_data });
-        delete foundUser.password;
-        res.status(200).json({ data: foundUser });
+      if (access_data.data === refresh_data.data) {
+        const user = await User.find({ user_id: access_data.data });
+        const newRefreshToken = await userAuth.generateRefreshToken(user._id);
+        const newAccessToken = await userAuth.generateAccessToken(user._id);
+        delete user.password;
+        res
+          .cookie('access_token', newAccessToken, {
+            httpOnly: true,
+            secure: false,
+            expires: new Date(Date.now() + 8 * 3600000),
+          })
+          .status(200)
+          .json({ data: user, refresh_token: newRefreshToken });
       }
       return next({
         status: 400,
