@@ -10,7 +10,7 @@ const NavbarLoggedIn = (props: Props) => {
     <ul className="flex items-center">
       <li className="mr-3">
         <Link
-          href="/signup"
+          href="/create-post"
           className="border rounded px-3 py-2 text-indigo-800 border-indigo-800 cursor-pointer hover:bg-indigo-800 hover:text-white ease-in-out duration-300"
         >
           Create Post
@@ -18,14 +18,14 @@ const NavbarLoggedIn = (props: Props) => {
       </li>
       <li className="mr-3">
         <Link
-          href="/signup"
+          href="/notifications"
           className=" text-indigo-800 block text-center rounded hover:bg-indigo-200 hover:text-indigo-800 ease-in-out duration-300 px-3 py-2"
         >
           <FontAwesomeIcon icon={faBell} size="xl" />
         </Link>
       </li>
       <li className="mr-3">
-        <Link href="/signup">
+        <Link href="/profile">
           <Avatar src="" alt="Profile Picture" className="w-10 h-10" />
         </Link>
       </li>
