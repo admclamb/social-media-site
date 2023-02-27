@@ -7,6 +7,7 @@ type Props = {
 
 const FeedNav = ({ setQuery, query }: Props) => {
   const handleChange = ({ target: { id } }) => {
+    console.log(id);
     setQuery(id);
   };
   console.log(query);
@@ -25,7 +26,7 @@ const FeedNav = ({ setQuery, query }: Props) => {
       </li>
       <li>
         <button
-          id="relevant"
+          id="latest"
           className={`p-3  rounded ${
             query === 'latest' && 'font-semibold'
           } hover:text-indigo-800 hover:bg-white`}
@@ -36,7 +37,7 @@ const FeedNav = ({ setQuery, query }: Props) => {
       </li>
       <li>
         <button
-          id="relevant"
+          id="top"
           className={`p-3 rounded ${
             query === 'top' && 'font-semibold'
           } hover:text-indigo-800 hover:bg-white`}

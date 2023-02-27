@@ -22,7 +22,8 @@ export class PostController {
 
   public static async list(req: Request, res: Response, next: NextFunction) {
     try {
-      const { query } = req.params;
+      const { query } = req.query;
+      console.log('QUERY: ', query);
       if (query) {
       }
       res.status(200).json({ data: await Post.find() });

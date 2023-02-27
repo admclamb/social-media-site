@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 import { userRouter } from './user/UserRouter';
-import { postRouter } from './posts/PostRouter';
+import { postRouter } from './post/PostRouter';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import * as path from 'path';
