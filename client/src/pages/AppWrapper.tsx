@@ -19,11 +19,11 @@ const AppWrapper = ({ children }: Props) => {
   const [search, setSearch] = useState<string>('');
 
   //temp save user for testing
-  useEffect(() => {
-    if (user && !isObjectEmpty(user)) {
-      storage.local.set('user', JSON.stringify(user));
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user && !isObjectEmpty(user)) {
+  //     storage.local.set('user', JSON.stringify(user));
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     const foundUser = storage.local.get('user');
@@ -34,7 +34,6 @@ const AppWrapper = ({ children }: Props) => {
 
   useEffect(() => {
     const foundRefreshToken = storage.local.get('refresh_token');
-    console.log(foundRefreshToken);
     // if (foundRefreshToken) {
     //   (async () => {
     //     try {

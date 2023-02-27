@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import { userRouter } from './user/UserRouter';
+import { postRouter } from './posts/PostRouter';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import * as path from 'path';
@@ -15,6 +16,7 @@ export class App {
 
   private setRoutes() {
     this.instance.use('/users', userRouter);
+    this.instance.use('/posts', postRouter);
   }
 
   public config() {

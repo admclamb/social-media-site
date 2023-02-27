@@ -1,5 +1,6 @@
 import Card from '@/components/Card/Card';
 import ContainerColumns from '@/components/Container/ContainerColumns/ContainerColumns';
+import Feed from '@/components/Feed/Feed';
 import { UserContext } from '@/context/UserContext';
 import Layout from '@/layout/Layout';
 import Head from 'next/head';
@@ -8,7 +9,6 @@ import { useContext } from 'react';
 
 export default function Home() {
   const { user } = useContext(UserContext);
-  console.log(user);
   return (
     <>
       <Head>
@@ -46,9 +46,7 @@ export default function Home() {
               </Card>
             </aside>
             <section>
-              <Card>
-                <h1>Main</h1>
-              </Card>
+              <Feed />
             </section>
             <aside className="custom-container-cols-right">
               <Card>
