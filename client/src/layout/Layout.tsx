@@ -5,12 +5,16 @@ type Props = {
   children: React.ReactNode;
   classes: string;
   hasSpacing: boolean;
+  headerEl: React.ReactNode | null;
 };
 
-const Layout = ({ children, classes, hasSpacing }: Props) => {
+const Layout = ({ children, classes, hasSpacing, headerEl }: Props) => {
   return (
     <>
-      <Navbar />
+      <header>
+        <Navbar />
+        {headerEl && headerEl}
+      </header>
       <main className={`${hasSpacing && 'pt-3'} ${classes} min-h-screen`}>
         {children}
       </main>
@@ -20,6 +24,7 @@ const Layout = ({ children, classes, hasSpacing }: Props) => {
 
 Layout.defaultProps = {
   hasSpacing: false,
+  headerEl: null,
 };
 
 export default Layout;
