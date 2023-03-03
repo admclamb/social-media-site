@@ -1,5 +1,4 @@
 import { Post } from '../models/PostModel';
-import * as POST_DATA from './PostData.json';
 import { Seeder } from './Seeder';
 export class PostDataProvider {
   public static seed(): void {

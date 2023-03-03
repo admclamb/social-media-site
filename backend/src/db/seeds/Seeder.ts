@@ -26,7 +26,7 @@ export class Seeder {
       await this.model.create(data).catch(console.log);
       console.log('Data successfully loaded!');
     } catch (error) {
-      console.log(error);
+      console.log('ERROR: ', error);
     }
   }
 

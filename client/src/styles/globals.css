@@ -27,6 +27,15 @@ body {
   max-width: 100%;
 }
 
+.custom-container-2-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.custom-container-2-cols-aside {
+  display: none;
+}
+
 @media screen and (min-width: 640px) {
   .custom-form-container {
     max-width: 640px;
@@ -57,6 +66,14 @@ body {
   }
 
   .custom-container-cols-right {
+    display: block;
+  }
+
+  .custom-container-2-cols {
+    grid-template-columns: 3fr 1fr;
+  }
+
+  .custom-container-2-cols-aside {
     display: block;
   }
 }

@@ -11,7 +11,7 @@ type Props = {};
 const Navbar = (props: Props) => {
   const { user } = useContext(UserContext);
   return (
-    <nav className="px-2 z-50 sticky top-0 h-16 py-3 m-0 border-b">
+    <nav className="px-2 z-50 sticky bg-white w-full top-0 h-16 py-3 m-0 border-b">
       <div className="custom-container flex items-center justify-between h-full mx-auto relative">
         <div className="flex items-center">
           <Link href="/" className="hover:dark:text-indigo-800 mr-5">
