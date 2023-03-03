@@ -15,6 +15,8 @@ const CreatePostBody = ({ text, setText }: Props) => {
       style={{ width: '100%' }}
       placeholder="Write here..."
       className="p-2 text-lg resize-none"
+      value={text}
+      onChange={handleChange}
     />
   );
 };

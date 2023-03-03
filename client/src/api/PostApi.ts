@@ -1,6 +1,7 @@
 import { User } from '@/ts/types/User';
 import { Profile } from '@/ts/types/Profile';
 import { Api } from './Api';
+import { Post } from '@/ts/types/Post';
 
 export class PostApi extends Api {
   private static instance: PostApi;
@@ -28,5 +29,14 @@ export class PostApi extends Api {
       singal: abortController.signal,
     };
     return this.fetchJson(path, options, []);
+  }
+
+  public async create(post: Post) {
+    const path = '/posts';
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ data: post }),
+    };
+    return this.fetchJson(path, options, {});
   }
 }

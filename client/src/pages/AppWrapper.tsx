@@ -18,38 +18,25 @@ const AppWrapper = ({ children }: Props) => {
   });
   const [search, setSearch] = useState<string>('');
 
-  //temp save user for testing
-  // useEffect(() => {
-  //   if (user && !isObjectEmpty(user)) {
-  //     storage.local.set('user', JSON.stringify(user));
-  //   }
-  // }, [user]);
-
-  useEffect(() => {
-    const foundUser = storage.local.get('user');
-    if (foundUser && !isObjectEmpty(foundUser)) {
-      setUser(foundUser);
-    }
-  }, []);
-
   useEffect(() => {
     const foundRefreshToken = storage.local.get('refresh_token');
-    // if (foundRefreshToken) {
-    //   (async () => {
-    //     try {
-    //       const response = await UserApi.getInstance().loginWithToken(
-    //         foundRefreshToken
-    //       );
-    //       if (response) {
-    //         storage.local.set('refresh_token', response.refresh_token);
-    //         delete response.refresh_token;
-    //         setUser(response);
-    //       }
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   })();
-    // }
+    if (foundRefreshToken) {
+      (async () => {
+        try {
+          const response = await UserApi.getInstance().loginWithToken(
+            foundRefreshToken
+          );
+          if (response.refresh_token) {
+            storage.local.set('refresh_token', response.refresh_token);
+            delete response.refresh_token;
+          }
+          setUser(response);
+        } catch (error) {
+          storage.local.remove('refresh_token');
+          console.log(error);
+        }
+      })();
+    }
   }, []);
   return (
     <UserContext.Provider value={{ user, setUser }}>

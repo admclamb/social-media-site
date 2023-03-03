@@ -180,9 +180,8 @@ export class UserController {
         refresh_data.data &&
         access_data.data === refresh_data.data
       ) {
-        const user = await User.find({
-          id: mongoose.Types.ObjectId(access_data.data),
-        });
+        const _id = mongoose.Types.ObjectId(access_data.data);
+        const user = await User.findOne({ _id });
         const newRefreshToken = await userAuth.generateRefreshToken(user._id);
         const newAccessToken = await userAuth.generateAccessToken(user._id);
         delete user.password;

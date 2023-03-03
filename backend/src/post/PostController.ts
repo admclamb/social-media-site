@@ -51,6 +51,7 @@ export class PostController {
         PostController.requiredProperties,
         data
       );
+      data.comments = [];
       const createdUser = await Post.create(data);
       res.status(200).json({ data: createdUser });
     } catch (error) {

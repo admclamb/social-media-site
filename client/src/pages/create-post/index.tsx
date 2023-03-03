@@ -1,3 +1,6 @@
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from '@/components/Card/Card';
 import ContainerColumns from '@/components/Container/ContainerColumns/ContainerColumns';
 import CreatePostBody from '@/components/CreatePost/CreatePostBody/CreatePostBody';
@@ -5,14 +8,33 @@ import CreatePostHeader from '@/components/CreatePost/CreatePostHeader/CreatePos
 import CreatePostNav from '@/components/CreatePost/CreatePostNav/CreatePostNav';
 import { UserContext } from '@/context/UserContext';
 import Layout from '@/layout/Layout';
-import Head from 'next/head';
-import React, { useContext, useState } from 'react';
+import { isObjectEmpty } from '@/utils/isObjectEmpty';
+import { PostApi } from '@/api/PostApi';
 
 type Props = {};
 
 const CreatePost = (props: Props) => {
-  const { user } = useContext(UserContext);
+  const [title, setTitle] = useState<string>('');
   const [body, setBody] = useState<string>('');
+  const { user } = useContext(UserContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (isObjectEmpty(user)) {
+      router.push('/');
+    }
+  }, [user]);
+
+  const publish = async () => {
+    try {
+      const post = {
+        title,
+        body,
+        author: user._id,
+      };
+      const response = await PostApi.getInstance().create(post);
+    } catch (error) {}
+  };
+
   return (
     <>
       <Head>
@@ -29,7 +51,7 @@ const CreatePost = (props: Props) => {
           <ContainerColumns classes="gap-4" isDoubleCols>
             <section>
               <Card>
-                <CreatePostHeader />
+                <CreatePostHeader title={title} setTitle={setTitle} />
                 <CreatePostBody text={body} setText={setBody} />
               </Card>
             </section>

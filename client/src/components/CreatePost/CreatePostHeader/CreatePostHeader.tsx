@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-type Props = {};
+type Props = {
+  title: string;
+  setTitle: (arg0: string) => void;
+};
 
-const CreatePostHeader = (props: Props) => {
-  const [title, setTitle] = useState<string>('');
-
+const CreatePostHeader = ({ title, setTitle }: Props) => {
   const changeTitle = ({ target: { value } }) => {
     setTitle(value);
   };
