@@ -1,20 +1,18 @@
-import React from 'react';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/pro-light-svg-icons';
-import Avatar from '@/components/Avatar/Avatar';
+import React from "react";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/pro-light-svg-icons";
+import Avatar from "@/components/Avatar/Avatar";
+import ButtonOutlinePrimary from "@/components/Button/ButtonOutlinePrimary/ButtonOutlinePrimary";
 type Props = {};
 
 const NavbarLoggedIn = (props: Props) => {
   return (
     <ul className="flex items-center">
       <li className="mr-3">
-        <Link
-          href="/create-post"
-          className="border rounded px-3 py-2 text-indigo-800 border-indigo-800 cursor-pointer hover:bg-indigo-800 hover:text-white ease-in-out duration-300"
-        >
+        <ButtonOutlinePrimary href="/create-post">
           Create Post
-        </Link>
+        </ButtonOutlinePrimary>
       </li>
       <li className="mr-3">
         <Link
