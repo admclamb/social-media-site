@@ -1,11 +1,13 @@
-import Card from '@/components/Card/Card';
-import ContainerColumns from '@/components/Container/ContainerColumns/ContainerColumns';
-import Feed from '@/components/Feed/Feed';
-import { UserContext } from '@/context/UserContext';
-import Layout from '@/layout/Layout';
-import Head from 'next/head';
-import Link from 'next/link';
-import { useContext } from 'react';
+import ButtonLightPrimary from "@/components/Button/ButtonLightPrimary/ButtonLightPrimary";
+import ButtonOutlinePrimary from "@/components/Button/ButtonOutlinePrimary/ButtonOutlinePrimary";
+import Card from "@/components/Card/Card";
+import ContainerColumns from "@/components/Container/ContainerColumns/ContainerColumns";
+import Feed from "@/components/Feed/Feed";
+import { UserContext } from "@/context/UserContext";
+import Layout from "@/layout/Layout";
+import Head from "next/head";
+import Link from "next/link";
+import { useContext } from "react";
 
 export default function Home() {
   const { user } = useContext(UserContext);
@@ -31,18 +33,12 @@ export default function Home() {
                 <p className="text-gray-600">
                   Best place for developers to grow in their careers.
                 </p>
-                <Link
-                  href="/signup"
-                  className="block text-center my-2 border rounded px-3 py-2 text-indigo-800 border-indigo-800 cursor-pointer hover:bg-indigo-800 hover:text-white ease-in-out duration-300"
-                >
+                <ButtonOutlinePrimary href="/signup" className="block my-2">
                   Create Account
-                </Link>
-                <Link
-                  href="/login"
-                  className="block text-center rounded hover:bg-indigo-200 hover:text-indigo-800 ease-in-out duration-300 p-3"
-                >
+                </ButtonOutlinePrimary>
+                <ButtonLightPrimary href="/login" className="block">
                   Login
-                </Link>
+                </ButtonLightPrimary>
               </Card>
             </aside>
             <section>

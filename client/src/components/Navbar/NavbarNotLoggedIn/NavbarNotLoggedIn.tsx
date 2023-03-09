@@ -1,5 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import ButtonLightPrimary from "@/components/Button/ButtonLightPrimary/ButtonLightPrimary";
 
 type Props = {};
 
@@ -7,12 +8,7 @@ const NavbarNotLoggedIn = (props: Props) => {
   return (
     <ul className="flex items-center">
       <li className="mr-3">
-        <Link
-          href="/login"
-          className="block text-center rounded hover:bg-indigo-200 hover:text-indigo-800 ease-in-out duration-300 px-3 py-2"
-        >
-          Log in
-        </Link>
+        <ButtonLightPrimary href="/login">Log in</ButtonLightPrimary>
       </li>
       <li>
         <Link
