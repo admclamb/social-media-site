@@ -1,11 +1,11 @@
-import { SearchContext } from '@/context/UserContext';
-import React, { useContext, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/pro-regular-svg-icons';
+import { SearchContext } from "@/context/UserContext";
+import React, { useContext, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/pro-regular-svg-icons";
 type Props = {};
 
 const Searchbar = (props: Props) => {
-  const [currSearch, setCurrSearch] = useState('');
+  const [currSearch, setCurrSearch] = useState("");
   const { setSearch } = useContext(SearchContext);
 
   const handleChange = ({ target: { value } }) => {
@@ -16,7 +16,7 @@ const Searchbar = (props: Props) => {
       <input
         value={currSearch}
         onChange={handleChange}
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-indigo-800"
         placeholder="Search..."
       />
       <button className="absolute right-0 p-2 rounded top-1/2 -translate-y-1/2 hover:text-indigo-600 hover:bg-indigo-200 ease-in-out duration-300">
