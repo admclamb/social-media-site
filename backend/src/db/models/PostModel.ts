@@ -1,15 +1,19 @@
-import mongoose from 'mongoose';
-import { Schema } from 'mongoose';
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
 const PostSchema = new mongoose.Schema(
   {
     title: {
-      required: [true, 'A Post requires a title'],
+      required: [true, "A Post requires a title"],
+      type: String,
+    },
+    slug: {
+      required: [true, "A Post requires a slug"],
       type: String,
     },
     author: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: [true, 'A Post requires an author'],
+      ref: "User",
+      required: [true, "A Post requires an author"],
     },
     header_image_url: {
       type: String,
@@ -17,12 +21,12 @@ const PostSchema = new mongoose.Schema(
     },
     body: {
       type: String,
-      required: [true, 'A Post requires a body'],
+      required: [true, "A Post requires a body"],
     },
     comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Comment',
+        ref: "Comment",
         required: true,
       },
     ],
@@ -30,8 +34,8 @@ const PostSchema = new mongoose.Schema(
       type: [
         {
           type: Schema.Types.ObjectId,
-          ref: 'User',
-          unique: [true, 'A like needs to be unique'],
+          ref: "User",
+          unique: [true, "A like needs to be unique"],
         },
       ],
     },
@@ -39,8 +43,8 @@ const PostSchema = new mongoose.Schema(
       type: [
         {
           type: Schema.Types.ObjectId,
-          ref: 'User',
-          unique: [true, 'A Unicorn like needs to be unique'],
+          ref: "User",
+          unique: [true, "A Unicorn like needs to be unique"],
         },
       ],
     },
@@ -48,8 +52,8 @@ const PostSchema = new mongoose.Schema(
       type: [
         {
           type: Schema.Types.ObjectId,
-          ref: 'User',
-          unique: [true, 'A Bookmark needs to be unique'],
+          ref: "User",
+          unique: [true, "A Bookmark needs to be unique"],
         },
       ],
     },
@@ -63,4 +67,4 @@ const PostSchema = new mongoose.Schema(
   }
 );
 
-export const Post = mongoose.model('Post', PostSchema);
+export const Post = mongoose.model("Post", PostSchema);

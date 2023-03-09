@@ -2,24 +2,26 @@ import { ButtonProps } from "@/ts/inerfaces/ButtonProps";
 import React from "react";
 import Button from "../Button";
 
-const ButtonLightPrimary = ({
+const ButtonPrimary = ({
   href = "",
   children,
   className,
+  type,
 }: ButtonProps) => {
   return (
     <Button
       href={href}
-      className={`rounded hover:bg-indigo-200 hover:text-indigo-800 ease-in-out duration-300 ${className}`}
+      className={`bg-indigo-800 text-white rounded w-[8rem] ease-in-out duration-300 ${className}`}
+      type={type}
     >
       {children}
     </Button>
   );
 };
 
-ButtonLightPrimary.defaultProps = {
+ButtonPrimary.defaultProps = {
   href: "",
   className: "",
 };
 
-export default ButtonLightPrimary;
+export default ButtonPrimary;

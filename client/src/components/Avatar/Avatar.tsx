@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   url: string;
-  alt: string;
+  alt?: string;
   className: string;
 };
 
@@ -15,7 +15,7 @@ const Avatar = ({ url, alt, className }: Props) => {
 };
 
 Avatar.defaultProps = {
-  className: 'h-12 w-12 ',
+  className: "h-12 w-12 ",
 };
 
 export default Avatar;

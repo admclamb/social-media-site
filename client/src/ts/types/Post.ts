@@ -1,6 +1,7 @@
 export type Post = {
-  post_id: number;
+  _id: number;
   title: string;
+  slug: string;
   body: string;
   header_image_url: string | null;
   tags: string[];

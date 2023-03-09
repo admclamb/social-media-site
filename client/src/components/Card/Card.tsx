@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -15,8 +15,8 @@ const Card = ({ children, className, padding }: Props) => {
 };
 
 Card.defaultProps = {
-  className: '',
-  padding: 'p-3',
+  className: "",
+  padding: "p-4",
 };
 
 export default Card;

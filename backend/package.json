@@ -13,7 +13,7 @@
     "test:start": "npx cross-env LOG_LEVEL=warn NODE_ENV=test npm run test:start:run",
     "test:start:run": "run-s test:drop-database start ",
     "seed:user": "node build/src/db/seeds/UserDataProvider.js --import",
-    "seed:post": "node build/src/db/seeds/PostDataProvider.js --import",
+    "seed:post": "node build/src/db/seeds/PostDataProvider.js --import --ids",
     "seed:all": "npm:seed:*",
     "delete:seed:user": "node build/src/db/seeds/UserDataProvider.js --delete",
     "delete:seed:post": "node build/src/db/seeds/PostDataProvider.js --delete",

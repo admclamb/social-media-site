@@ -40,6 +40,7 @@ const Signup = (props: Props) => {
       };
     });
   };
+
   const handleProfileChange = ({ target: { value, id } }) => {
     console.log(value);
     setProfile((curr) => {

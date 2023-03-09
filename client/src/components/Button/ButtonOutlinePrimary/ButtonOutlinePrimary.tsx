@@ -1,17 +1,16 @@
+import { ButtonProps } from "@/ts/inerfaces/ButtonProps";
 import React from "react";
 import Button from "../Button";
 
-type Props = {
-  href: string;
-  children: React.ReactNode;
-  className: string;
-};
-
-const ButtonOutlinePrimary = ({ href = "", children, className }: Props) => {
+const ButtonOutlinePrimary = ({
+  href = "",
+  children,
+  className,
+}: ButtonProps) => {
   return (
     <Button
       href={href}
-      className={`text-center border rounded px-3 py-2 text-indigo-800 border-indigo-800 cursor-pointer hover:bg-indigo-800 hover:text-white ease-in-out duration-300 ${className}`}
+      className={`border rounded text-indigo-800 border-indigo-800 cursor-pointer hover:bg-indigo-800 hover:text-white ease-in-out duration-300 ${className}`}
     >
       {children}
     </Button>

@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "@/components/Card/Card";
 import { Profile } from "@/ts/types/Profile";
+import ButtonPrimary from "@/components/Button/ButtonPrimary/ButtonPrimary";
 
 type Props = {
   profile: Profile;
@@ -46,6 +47,12 @@ const SignupProfile = ({
           />
         </div>
         <div className="flex justify-center gap-4">
+          <ButtonPrimary onClick={() => setCurrSignupPage("signup")}>
+            Previous
+          </ButtonPrimary>
+          <ButtonPrimary type="submit" onClick={handleSubmit}>
+            Next
+          </ButtonPrimary>
           <button
             className="py-2 px-3 bg-indigo-800 text-white rounded w-[8rem]"
             onClick={() => setCurrSignupPage("signup")}

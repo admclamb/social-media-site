@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import FeedNav from './FeedNav/FeedNav';
-import { Post } from '@/ts/types/Post';
-import { PostApi } from '@/api/PostApi';
-import ErrorToast from '@/errors/ErrorToast';
+import React, { useEffect, useState } from "react";
+import FeedNav from "./FeedNav/FeedNav";
+import { Post } from "@/ts/types/Post";
+import { PostApi } from "@/api/PostApi";
+import ErrorToast from "@/errors/ErrorToast";
+import PostCard from "../Post/PostCard/PostCard";
 type Props = {};
 
 const Feed = (props: Props) => {
-  const [query, setQuery] = useState('relevant');
-  const [post, setPosts] = useState<Post[]>([]);
+  const [query, setQuery] = useState("relevant");
+  const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<Error | null>(null);
   useEffect(() => {
     const abortController = new AbortController();
@@ -19,7 +20,7 @@ const Feed = (props: Props) => {
           query,
           abortController
         );
-        console.log(response);
+        setPosts(response);
       } catch (error) {
         setError({ message: error.message });
       }
@@ -28,11 +29,14 @@ const Feed = (props: Props) => {
       return abortController.abort();
     };
   }, [query]);
-  console.log('ERROR: ', error);
+  console.log(posts);
   return (
     <>
       <ErrorToast error={error} setError={setError} />
       <FeedNav query={query} setQuery={setQuery} />
+      {posts.map((post) => {
+        return <PostCard key={post._id} post={post} />;
+      })}
     </>
   );
 };

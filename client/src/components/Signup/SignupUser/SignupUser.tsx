@@ -1,7 +1,8 @@
-import { User } from '@/ts/types/User';
-import React from 'react';
-import Card from '@/components/Card/Card';
-import Link from 'next/link';
+import { User } from "@/ts/types/User";
+import React from "react";
+import Card from "@/components/Card/Card";
+import Link from "next/link";
+import ButtonPrimary from "@/components/Button/ButtonPrimary/ButtonPrimary";
 type Props = {
   signup: User;
   handleSignupChange: ({
@@ -67,14 +68,17 @@ const SignupUser = ({
             className="border rounded p-2"
           />
         </div>
+        <ButtonPrimary onClick={() => setCurrSignupPage("about")}>
+          Next
+        </ButtonPrimary>
         <button
           className="mx-auto py-2 px-3 bg-indigo-800 text-white rounded w-[8rem]"
-          onClick={() => setCurrSignupPage('about')}
+          onClick={() => setCurrSignupPage("about")}
         >
           Next
         </button>
         <p className="text-center">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link href="/login" className="text-indigo-800 underline">
             Log in here.
           </Link>

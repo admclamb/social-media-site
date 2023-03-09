@@ -1,29 +1,29 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
-import { ErrorHandler } from '../errors/ErrorHandler';
-import { Post } from '../db/models/PostModel';
-import { DataValidator } from '../utils/DataValidator';
-import { DatabaseErrorHandler } from '../errors/DatabaseErrorHandler';
+import { ErrorHandler } from "../errors/ErrorHandler";
+import { Post } from "../db/models/PostModel";
+import { DataValidator } from "../utils/DataValidator";
+import { DatabaseErrorHandler } from "../errors/DatabaseErrorHandler";
 
 export class PostController {
   private static validProperties = [
-    'title',
-    'author',
-    'header_image_url',
-    'body',
-    'comments',
-    'likes',
-    'unicorn_likes',
-    'bookmarks',
-    'tags',
+    "title",
+    "author",
+    "header_image_url",
+    "body",
+    "comments",
+    "likes",
+    "unicorn_likes",
+    "bookmarks",
+    "tags",
   ];
 
-  private static requiredProperties = ['title', 'author', 'body', 'comments'];
+  private static requiredProperties = ["title", "author", "body", "comments"];
 
   public static async list(req: Request, res: Response, next: NextFunction) {
     try {
       const { query } = req.query;
-      console.log('QUERY: ', query);
+      console.log("QUERY: ", query);
       if (query) {
       }
       res.status(200).json({ data: await Post.find() });
@@ -38,7 +38,7 @@ export class PostController {
       if (foundPost) {
         res.status(200).json({ data: foundPost });
       }
-      return next({ status: 404, message: 'Post not found.' });
+      return next({ status: 404, message: "Post not found." });
     } catch (error) {
       return next({ status: 400, message: error.message });
     }
@@ -72,7 +72,7 @@ export class PostController {
       if (!_id) {
         return next({
           status: 400,
-          message: 'A Post id is required.',
+          message: "A Post id is required.",
         });
       }
       const filter = { _id };
@@ -82,7 +82,7 @@ export class PostController {
       if (updatedPost) {
         return res.status(200).json({ data: updatedPost });
       }
-      return next({ status: 400, message: 'Error updating post.' });
+      return next({ status: 400, message: "Error updating post." });
     } catch (error) {
       console.log(error);
       return next(DatabaseErrorHandler.handleError(error));
@@ -99,11 +99,15 @@ export class PostController {
       }
       return next({
         status: 400,
-        message: 'Post id not found.',
+        message: "Post id not found.",
       });
     } catch (error) {
       console.log(error);
       return next(DatabaseErrorHandler.handleError(error));
     }
+  }
+
+  private static getTotalLikes(likes: []): number {
+    return likes.length;
   }
 }
