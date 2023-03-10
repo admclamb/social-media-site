@@ -23,39 +23,17 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: [true, "A Post requires a body"],
     },
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Comment",
-        required: true,
-      },
-    ],
-    likes: {
-      type: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-          unique: [true, "A like needs to be unique"],
-        },
-      ],
+    numberOfLikes: {
+      type: Number,
+      default: 0,
     },
-    unicorn_likes: {
-      type: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-          unique: [true, "A Unicorn like needs to be unique"],
-        },
-      ],
+    numberOfBookmarks: {
+      type: Number,
+      default: 0,
     },
-    bookmarks: {
-      type: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-          unique: [true, "A Bookmark needs to be unique"],
-        },
-      ],
+    numberOfComments: {
+      type: Number,
+      default: 0,
     },
     tags: {
       type: [{ type: String }],

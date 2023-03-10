@@ -12,6 +12,7 @@ const Post = (props: Props) => {
       router.push("/");
     }
   }, [slug]);
+
   return <div>Post</div>;
 };
 

@@ -38,13 +38,13 @@ const PostCard = ({ post }: Props) => {
       </div>
       <footer className="ml-[3rem] mt-4 flex gap-4">
         <ButtonLightPrimary href={`/post/${slug}`}>
-          <FontAwesomeIcon icon={faHeart} size="lg" /> 10 likes
+          <FontAwesomeIcon icon={faHeart} /> 10 likes
         </ButtonLightPrimary>
         <ButtonLightPrimary href={`/post/${slug}`}>
-          <FontAwesomeIcon icon={faComment} size="lg" /> 5 Comments
+          <FontAwesomeIcon icon={faComment} /> 5 Comments
         </ButtonLightPrimary>
         <ButtonLightPrimary className="ml-auto">
-          <FontAwesomeIcon icon={faBookmark} size="lg" />
+          <FontAwesomeIcon icon={faBookmark} />
         </ButtonLightPrimary>
       </footer>
     </Card>

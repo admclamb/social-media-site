@@ -1,1 +1,2 @@
 - how to store large amoutns of likes
+- replace question marks, /, and etc. in slugs on backend.

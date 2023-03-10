@@ -1,0 +1,17 @@
+[
+  {
+    "author": 0,
+    "comment": "Excellent Post!",
+    "post": 0
+  },
+  {
+    "author": 3,
+    "comment": "This post reminds me of Morty",
+    "post": 1
+  },
+  {
+    "author": 4,
+    "comment": "I agree with you Rick",
+    "post": 1
+  }
+]

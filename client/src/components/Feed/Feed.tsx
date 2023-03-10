@@ -34,9 +34,11 @@ const Feed = (props: Props) => {
     <>
       <ErrorToast error={error} setError={setError} />
       <FeedNav query={query} setQuery={setQuery} />
-      {posts.map((post) => {
-        return <PostCard key={post._id} post={post} />;
-      })}
+      <div className="mt-2">
+        {posts.map((post) => {
+          return <PostCard key={post._id} post={post} />;
+        })}
+      </div>
     </>
   );
 };

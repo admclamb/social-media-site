@@ -2,6 +2,7 @@ import { SearchContext } from "@/context/UserContext";
 import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/pro-regular-svg-icons";
+import Link from "next/link";
 type Props = {};
 
 const Searchbar = (props: Props) => {
@@ -19,9 +20,12 @@ const Searchbar = (props: Props) => {
         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-indigo-800"
         placeholder="Search..."
       />
-      <button className="absolute right-0 p-2 rounded top-1/2 -translate-y-1/2 hover:text-indigo-600 hover:bg-indigo-200 ease-in-out duration-300">
+      <Link
+        href={`/search?q=${currSearch}`}
+        className="absolute right-0 p-2 rounded top-1/2 -translate-y-1/2 hover:text-indigo-600 hover:bg-indigo-200 ease-in-out duration-300"
+      >
         <FontAwesomeIcon icon={faSearch} size="lg" className="text-inherit" />
-      </button>
+      </Link>
     </form>
   );
 };
