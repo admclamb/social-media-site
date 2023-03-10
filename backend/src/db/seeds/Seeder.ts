@@ -30,6 +30,30 @@ export class Seeder {
     }
   }
 
+  public async injectPosts(postInformation: {}): Promise<void> {
+    try {
+      this.connect();
+      const userIds = await User.find({}, "_id");
+      const posts = postInformation.posts;
+      const comments = postInformation.comments;
+      if (!Array.isArray(userIds)) {
+        throw new Error("UserIds is not of type array.");
+      }
+      if (!Array.isArray(posts)) {
+        throw new Error("Posts is not of type array.");
+      }
+      const mappedPosts = posts.map(
+        (post) => (post.author = userIds[post.author])
+      );
+      const createdPosts = await this.model.create(mappedPosts);
+      console.log("CREATED POSTS: ", createdPosts);
+      const mappedComments = comments.map((comment) => comment);
+      console.log("Data successfully injected!");
+    } catch (error) {
+      console.error("ERROR: ", error.message);
+    }
+  }
+
   public async injectUserIds(userIds: []): Promise<void> {
     try {
       if (!Array.isArray(userIds)) {
