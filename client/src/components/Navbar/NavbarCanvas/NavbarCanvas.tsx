@@ -17,7 +17,7 @@ const NavbarCanvas = ({ setIsCanvasOpen }: Props) => {
   return (
     <>
       <div className="modal-backdrop z-40" onClick={closeCanvas}></div>
-      <div className="absolute left-0 top-0 z-50 w-11/12 bg-white border-r min-h-screen">
+      <div className="absolute left-0 top-0 z-50 w-11/12 sm:w-5/12 md:w-4/12 bg-white border-r min-h-screen">
         <header className="p-2 flex justify-between items-center">
           <Logo />
           <ButtonLightPrimary onClick={closeCanvas}>
