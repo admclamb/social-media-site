@@ -36,7 +36,7 @@ const Feed = (props: Props) => {
     <>
       <ErrorToast error={error} setError={setError} />
       <FeedNav query={query} setQuery={setQuery} />
-      <div className="mt-2 flex flex-col gap-0 md:gap-3">
+      <div className="mt-2 flex flex-col gap-0 md:gap-3 border-t md:border-t-0">
         {posts.map((post) => {
           return <PostCard key={post._id} post={post} />;
         })}
