@@ -4,6 +4,7 @@ import { Post } from "@/ts/types/Post";
 import { PostApi } from "@/api/PostApi";
 import ErrorToast from "@/errors/ErrorToast";
 import PostCard from "../Post/PostCard/PostCard";
+import { Error } from "@/ts/types/Error";
 type Props = {};
 
 const Feed = (props: Props) => {
@@ -21,8 +22,9 @@ const Feed = (props: Props) => {
           abortController
         );
         setPosts(response);
-      } catch (error) {
-        setError({ message: error.message });
+      } catch (error: any) {
+        const { message = "There was an error!" } = error;
+        setError({ message });
       }
     })();
     return () => {

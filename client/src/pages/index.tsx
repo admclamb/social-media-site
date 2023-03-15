@@ -3,10 +3,11 @@ import ButtonOutlinePrimary from "@/components/Button/ButtonOutlinePrimary/Butto
 import Card from "@/components/Card/Card";
 import ContainerColumns from "@/components/Container/ContainerColumns/ContainerColumns";
 import Feed from "@/components/Feed/Feed";
+import JoinCommunity from "@/components/JoinCommunity/JoinCommunity";
 import { UserContext } from "@/context/UserContext";
 import Layout from "@/layout/Layout";
+import { isObjectEmpty } from "@/utils/isObjectEmpty";
 import Head from "next/head";
-import Link from "next/link";
 import { useContext } from "react";
 
 export default function Home() {
@@ -26,20 +27,7 @@ export default function Home() {
         <div className="custom-container mx-auto">
           <ContainerColumns classes="gap-4">
             <aside className="custom-container-cols-left">
-              <Card>
-                <h4 className="font-semibold text-lg">
-                  Devify is a great community of 124 developers
-                </h4>
-                <p className="text-gray-600">
-                  Best place for developers to grow in their careers.
-                </p>
-                <ButtonOutlinePrimary href="/signup" className="block my-2">
-                  Create Account
-                </ButtonOutlinePrimary>
-                <ButtonLightPrimary href="/login" className="block">
-                  Login
-                </ButtonLightPrimary>
-              </Card>
+              {isObjectEmpty(user) && <JoinCommunity />}
             </aside>
             <section>
               <Feed />

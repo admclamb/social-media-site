@@ -26,7 +26,7 @@ export class Api {
       }
       return payload.data;
     } catch (error: any) {
-      if (error.name !== 'AbortError') {
+      if (error.name !== "AbortError") {
         throw error;
       }
       return Promise.resolve(onCancel);

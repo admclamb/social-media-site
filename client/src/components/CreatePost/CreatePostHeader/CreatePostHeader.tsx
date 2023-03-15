@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 type Props = {
   title: string;
@@ -6,7 +6,7 @@ type Props = {
 };
 
 const CreatePostHeader = ({ title, setTitle }: Props) => {
-  const changeTitle = ({ target: { value } }) => {
+  const changeTitle = ({ target: { value } }: any) => {
     setTitle(value);
   };
 

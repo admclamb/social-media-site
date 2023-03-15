@@ -36,6 +36,15 @@ body {
   display: none;
 }
 
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.377);
+}
+
 @media screen and (min-width: 640px) {
   .custom-form-container {
     max-width: 640px;

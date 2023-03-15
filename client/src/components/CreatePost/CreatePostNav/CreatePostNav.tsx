@@ -7,13 +7,22 @@ import {
   faListOl,
   faQuoteLeft,
   faUnderline,
-} from '@fortawesome/pro-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+} from "@fortawesome/pro-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
-type Props = {};
+type Props = {
+  body: string;
+  setBody: (arg0: string) => void;
+};
 
-const CreatePostNav = (props: Props) => {
+const CreatePostNav = ({ body, setBody }: Props) => {
+  const handleClick = ({
+    target: { value, id },
+  }: {
+    target: { value: any; id: any };
+  }) => {};
+
   return (
     <nav className="custom-container flex items-center mx-auto px-2 z-50 sticky top-16 py-2 border-b bg-white">
       <div className="flex">

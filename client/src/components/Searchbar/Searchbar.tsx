@@ -3,9 +3,11 @@ import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/pro-regular-svg-icons";
 import Link from "next/link";
-type Props = {};
+type Props = {
+  className: string;
+};
 
-const Searchbar = (props: Props) => {
+const Searchbar = ({ className }: Props) => {
   const [currSearch, setCurrSearch] = useState("");
   const { setSearch } = useContext(SearchContext);
 
@@ -13,7 +15,7 @@ const Searchbar = (props: Props) => {
     setCurrSearch(value);
   };
   return (
-    <form className="relative w-80">
+    <form className={`relative w-80${" " + className}`}>
       <input
         value={currSearch}
         onChange={handleChange}
@@ -28,6 +30,10 @@ const Searchbar = (props: Props) => {
       </Link>
     </form>
   );
+};
+
+Searchbar.defaultProps = {
+  className: "",
 };
 
 export default Searchbar;

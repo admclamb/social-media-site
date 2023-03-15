@@ -7,12 +7,14 @@ const ButtonPrimary = ({
   children,
   className,
   type,
+  onClick,
 }: ButtonProps) => {
   return (
     <Button
       href={href}
       className={`bg-indigo-800 text-white rounded w-[8rem] ease-in-out duration-300 ${className}`}
       type={type}
+      onClick={onClick}
     >
       {children}
     </Button>

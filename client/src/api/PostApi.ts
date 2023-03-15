@@ -26,7 +26,7 @@ export class PostApi extends Api {
   public async list(
     param: string,
     abortController: AbortController
-  ): Promise<Post> {
+  ): Promise<Post[]> {
     const path = `/posts${param && `?query=${param}`}`;
     const options = {
       singal: abortController.signal,

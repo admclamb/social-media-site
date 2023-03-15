@@ -5,8 +5,8 @@ import ButtonPrimary from "@/components/Button/ButtonPrimary/ButtonPrimary";
 
 type Props = {
   profile: Profile;
-  handleProfileChange: (arg0: React.ChangeElement<HTMLInputElement>) => void;
-  setCurrSignupPage: (arg0: React.ChangeElement<HTMLInputElement>) => void;
+  handleProfileChange: (arg0: any) => void;
+  setCurrSignupPage: (arg0: any) => void;
   handleSubmit: any;
 };
 
@@ -31,7 +31,6 @@ const SignupProfile = ({
             id="about"
             placeholder="About Yourself"
             className="border rounded p-2"
-            onChange={handleProfileChange}
           />
         </div>
         <div className="form-group flex flex-col">
@@ -43,7 +42,6 @@ const SignupProfile = ({
             id="work"
             placeholder="Where do You Work"
             className="border rounded p-2"
-            onChange={handleProfileChange}
           />
         </div>
         <div className="flex justify-center gap-4">

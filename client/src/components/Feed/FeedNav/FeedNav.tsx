@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   query: string;
@@ -6,9 +6,12 @@ type Props = {
 };
 
 const FeedNav = ({ setQuery, query }: Props) => {
-  const handleChange = ({ target: { id } }) => {
-    console.log(id);
-    setQuery(id);
+  const handleChange = ({ target }: React.MouseEvent<HTMLButtonElement>) => {
+    if (target) {
+      const id = (target as HTMLButtonElement).id;
+      console.log(id);
+      setQuery(id);
+    }
   };
   console.log(query);
   return (
@@ -17,7 +20,7 @@ const FeedNav = ({ setQuery, query }: Props) => {
         <button
           id="relevant"
           className={`p-3 rounded ${
-            query === 'relevant' && 'font-semibold'
+            query === "relevant" && "font-semibold"
           } hover:text-indigo-800 hover:bg-white`}
           onClick={handleChange}
         >
@@ -28,7 +31,7 @@ const FeedNav = ({ setQuery, query }: Props) => {
         <button
           id="latest"
           className={`p-3  rounded ${
-            query === 'latest' && 'font-semibold'
+            query === "latest" && "font-semibold"
           } hover:text-indigo-800 hover:bg-white`}
           onClick={handleChange}
         >
@@ -39,7 +42,7 @@ const FeedNav = ({ setQuery, query }: Props) => {
         <button
           id="top"
           className={`p-3 rounded ${
-            query === 'top' && 'font-semibold'
+            query === "top" && "font-semibold"
           } hover:text-indigo-800 hover:bg-white`}
           onClick={handleChange}
         >
