@@ -21,7 +21,7 @@ const PostCard = ({ post }: Props) => {
   const { author, createdAt, title, likes, comments, slug } = post;
   const createdDay = dayjs(createdAt);
   return (
-    <Card>
+    <Card isMobileResponsive>
       <header className="flex gap-3">
         <Avatar url="" />
         <div>

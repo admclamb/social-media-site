@@ -29,7 +29,7 @@ const Navbar = (props: Props) => {
             <FontAwesomeIcon icon={faBars} onClick={toggleNav} />
           </ButtonLightPrimary>
           <div className="flex items-center">
-            <Logo className="mr-7" />
+            <Logo className="md:mr-7" />
             <Searchbar className="hidden md:block" />
           </div>
 

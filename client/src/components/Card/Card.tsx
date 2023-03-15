@@ -4,11 +4,17 @@ type Props = {
   children: React.ReactNode;
   className: string;
   padding: string;
+  isMobileResponsive: boolean;
 };
 
-const Card = ({ children, className, padding }: Props) => {
+const Card = ({ children, className, padding, isMobileResponsive }: Props) => {
+  console.log(isMobileResponsive);
   return (
-    <article className={`${padding} border rounded ${className} bg-white`}>
+    <article
+      className={`${padding} bg-white ${
+        isMobileResponsive ? "border-b md:border md:rounded" : "border rounded"
+      } ${className} `}
+    >
       {children}
     </article>
   );
@@ -17,6 +23,7 @@ const Card = ({ children, className, padding }: Props) => {
 Card.defaultProps = {
   className: "",
   padding: "p-4",
+  isMobileResponsive: false,
 };
 
 export default Card;
