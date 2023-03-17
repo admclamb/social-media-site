@@ -34,7 +34,7 @@ const Navbar = (props: Props) => {
           </div>
 
           <div className="flex justify-between items-center ml-auto gap-2">
-            <ButtonLightPrimary href="search">
+            <ButtonLightPrimary href="search" className="md:hidden">
               <FontAwesomeIcon
                 icon={faSearch}
                 size="lg"
