@@ -47,11 +47,11 @@ const CreatePost = (props: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout
-        classes="bg-gray-100 pt-1 lg:pt-3"
+        className="bg-gray-100 pt-1 lg:pt-3"
         headerEl={<CreatePostNav body={body} setBody={setBody} />}
       >
         <div className="custom-container mx-auto xl:pt-12">
-          <ContainerColumns classes="gap-4" isDoubleCols>
+          <ContainerColumns className="gap-4" isDoubleCols>
             <section>
               <Card>
                 <CreatePostHeader title={title} setTitle={setTitle} />

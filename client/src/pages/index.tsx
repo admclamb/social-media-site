@@ -23,9 +23,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout classes="bg-gray-100" hasSpacing>
+      <Layout className="bg-gray-100" hasSpacing>
         <div className="custom-container mx-auto">
-          <ContainerColumns classes="gap-4">
+          <ContainerColumns className="gap-4">
             <aside className="custom-container-cols-left">
               {isObjectEmpty(user) && <JoinCommunity />}
             </aside>

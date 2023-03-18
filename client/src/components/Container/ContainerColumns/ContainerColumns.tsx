@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
-  classes: string;
+  className: string;
   isDoubleCols: boolean;
 };
 
-const ContainerColumns = ({ children, classes, isDoubleCols }: Props) => {
+const ContainerColumns = ({ children, className, isDoubleCols }: Props) => {
   return (
     <div
       className={`${
-        isDoubleCols ? 'custom-container-2-cols' : 'custom-container-cols'
-      } ${classes}`}
+        isDoubleCols ? "custom-container-2-cols" : "custom-container-cols"
+      } ${className}`}
     >
       {children}
     </div>
@@ -19,7 +19,7 @@ const ContainerColumns = ({ children, classes, isDoubleCols }: Props) => {
 };
 
 ContainerColumns.defaultProps = {
-  classes: '',
+  className: "",
   isDoubleCols: false,
 };
 

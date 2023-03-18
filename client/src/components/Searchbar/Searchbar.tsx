@@ -1,8 +1,9 @@
 import { SearchContext } from "@/context/UserContext";
-import React, { useContext, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/pro-regular-svg-icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
 type Props = {
   className: string;
 };
@@ -10,12 +11,17 @@ type Props = {
 const Searchbar = ({ className }: Props) => {
   const [currSearch, setCurrSearch] = useState("");
   const { setSearch } = useContext(SearchContext);
-
+  const router = useRouter();
   const handleChange = ({ target: { value } }) => {
     setCurrSearch(value);
   };
+
+  const submitSearch = (event: FormEvent) => {
+    event.preventDefault();
+    router.push(`/search?q=${currSearch}`);
+  };
   return (
-    <form className={`relative w-80${" " + className}`}>
+    <form className={`relative w-80${" " + className}`} onSubmit={submitSearch}>
       <input
         value={currSearch}
         onChange={handleChange}

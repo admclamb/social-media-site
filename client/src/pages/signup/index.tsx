@@ -67,7 +67,7 @@ const Signup = (props: Props) => {
       <Head>
         <title>Signup</title>
       </Head>
-      <Layout classes="bg-gray-100" hasSpacing>
+      <Layout className="bg-gray-100" hasSpacing>
         <Card className="custom-form-container mx-auto" padding="p-5">
           <ErrorAlert error={error} className="mb-2" />
           <form>

@@ -1,21 +1,21 @@
-import Navbar from '@/components/Navbar/Navbar';
-import React from 'react';
+import Navbar from "@/components/Navbar/Navbar";
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
-  classes: string;
+  className: string;
   hasSpacing: boolean;
   headerEl: React.ReactNode | null;
 };
 
-const Layout = ({ children, classes, hasSpacing, headerEl }: Props) => {
+const Layout = ({ children, className, hasSpacing, headerEl }: Props) => {
   return (
     <>
       <header>
         <Navbar />
         {headerEl && headerEl}
       </header>
-      <main className={`${hasSpacing && 'pt-3'} ${classes} min-h-screen`}>
+      <main className={`${hasSpacing && "pt-3"} ${className} min-h-screen`}>
         {children}
       </main>
     </>
@@ -25,6 +25,7 @@ const Layout = ({ children, classes, hasSpacing, headerEl }: Props) => {
 Layout.defaultProps = {
   hasSpacing: false,
   headerEl: null,
+  className: "",
 };
 
 export default Layout;
