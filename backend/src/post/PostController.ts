@@ -4,6 +4,7 @@ import { ErrorHandler } from "../errors/ErrorHandler";
 import { Post } from "../db/models/PostModel";
 import { DataValidator } from "../utils/DataValidator";
 import { DatabaseErrorHandler } from "../errors/DatabaseErrorHandler";
+import { PostService } from "./PostService";
 
 export class PostController {
   private static validProperties = [
@@ -26,7 +27,7 @@ export class PostController {
       console.log("QUERY: ", query);
       if (query) {
       }
-      res.status(200).json({ data: await Post.find() });
+      res.status(200).json({ data: await PostService.listWithAuthor() });
     } catch (error) {
       return next({ status: 500, message: error.message });
     }
