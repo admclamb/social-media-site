@@ -18,7 +18,7 @@ exports.up = function (knex) {
     table.integer("number_of_likes").defaultTo(0);
     table.integer("number_of_bookmarks").defaultTo(0);
     table.integer("number_of_comments").defaultTo(0);
-    table.specificType("intarray", "integer ARRAY");
+    table.specificType("tags", "integer ARRAY");
     table.timestamps(true, true);
   });
 };

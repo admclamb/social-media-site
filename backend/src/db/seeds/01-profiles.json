@@ -1,0 +1,42 @@
+[
+  {
+    "user_id": 1,
+    "first_name": "Anthony",
+    "last_name": "Mclamb",
+    "about": "Software Engineer that loves helping others",
+    "work": "nCino",
+    "avatar": "https://devify-social-media-site.s3.us-east-2.amazonaws.com/default-profile-pic.jpg"
+  },
+  {
+    "user_id": 2,
+    "first_name": "Debbie",
+    "last_name": "O'niell",
+    "about": "Software Engineer who loves learning",
+    "work": "Microsoft",
+    "avatar": "https://devify-social-media-site.s3.us-east-2.amazonaws.com/default-profile-pic.jpg"
+  },
+  {
+    "user_id": 3,
+    "first_name": "William",
+    "last_name": "Fan",
+    "about": "Front End Developer",
+    "work": "No Where",
+    "avatar": "https://devify-social-media-site.s3.us-east-2.amazonaws.com/default-profile-pic.jpg"
+  },
+  {
+    "user_id": 4,
+    "first_name": "Rick",
+    "last_name": "Sanchez",
+    "about": "Wubulubadubdub",
+    "work": "Everywhere",
+    "avatar": "https://devify-social-media-site.s3.us-east-2.amazonaws.com/default-profile-pic.jpg"
+  },
+  {
+    "user_id": 5,
+    "first_name": "Bird",
+    "last_name": "Person",
+    "about": "This is Bird Person",
+    "work": "Ricks Bestfriend",
+    "avatar": "https://devify-social-media-site.s3.us-east-2.amazonaws.com/default-profile-pic.jpg"
+  }
+]

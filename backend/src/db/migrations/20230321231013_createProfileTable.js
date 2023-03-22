@@ -12,7 +12,6 @@ exports.up = function (knex) {
       .onDelete("CASCADE");
     table.text("first_name").notNullable();
     table.text("last_name").notNullable();
-    table.string("password").notNullable();
     table.string("about");
     table.text("avatar").notNullable();
     table.text("primary_color").defaultTo("#000");
