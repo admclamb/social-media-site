@@ -1,8 +1,6 @@
-const { PORT = '5000' } = process.env;
-import mongoose from 'mongoose';
-import { App } from './App';
-import { DatabaseConfig } from './Config';
-
+const { PORT = "5000" } = process.env;
+import { App } from "./App";
+const knex = require("./db/connection");
 const app = new App();
 app.config();
 
@@ -10,13 +8,14 @@ function listener() {
   console.log(`Listening on Port ${PORT}!`);
 }
 
-mongoose
-  .connect(DatabaseConfig.getDatabaseUri())
-  .then((ans) => {
-    console.log('DB connection is successful 🚀');
+knex.migrate
+  .latests()
+  .then((migrations) => {
+    console.log("🚀📦migrations📦🚀", migrations);
     app.listen(PORT, listener);
   })
-  .catch((error: any) => {
-    console.log('💣😑 What Happened');
+  .catch((error) => {
+    console.log("💣🤔SOMETHING WENT WRONG🤔💣");
     console.error(error);
+    knex.destroy();
   });

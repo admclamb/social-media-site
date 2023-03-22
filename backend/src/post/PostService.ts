@@ -1,40 +1,38 @@
+import { integer } from "aws-sdk/clients/cloudfront";
+import { Knex } from "knex";
 import { ObjectId } from "mongoose";
 import { Post } from "../db/models/PostModel";
 import { User } from "../db/models/UserModel";
-
+const knex = require("../db/connection");
 export class PostService {
-  private static schema = Post;
-  private static userSchema = User;
-  public static async list() {
-    return await PostService.schema.find();
+  private static manager: Knex = knex;
+  public static list(): Promise<any> {
+    return PostService.manager("posts").select("*");
   }
 
-  public static async listWithAuthor() {
-    const post = PostService.schema;
-    const user = PostService.userSchema;
-    return post
-      .find()
-      .populate("author")
-      .exec((err, post) => {
-        if (err) throw new Error(err);
-        console.log("POSTS: ", post);
-        return post;
-      });
+  public static listWithAuthor(): Promise<any> {
+    return PostService.manager("posts").select("*");
   }
 
-  public static async read(_id: ObjectId) {
-    return await PostService.schema.findById(_id);
+  public static read(_id: ObjectId): Promise<any> {
+    return PostService.manager("posts").select("*").where({ _id });
   }
 
-  public static async create(post: any) {
-    return await PostService.schema.create(post);
+  public static create(post: any): Promise<any> {
+    return PostService.manager("posts")
+      .insert(post)
+      .returning("*")
+      .then((posts) => posts[0]);
   }
 
-  public static async update(filter: {}, data: any, config: {}) {
-    return await PostService.schema.findOneAndUpdate(filter, data, config);
+  public static update(_id: integer, updatedPost: any): Promise<any> {
+    return PostService.manager("posts")
+      .select("*")
+      .where({ _id })
+      .update(updatedPost, "*");
   }
 
-  public static async destroy(_id: ObjectId) {
-    return await PostService.schema.findByIdAndDelete(_id);
+  public static destroy(_id: ObjectId): Promise<any> {
+    return PostService.manager("posts").where({ _id }).del();
   }
 }
