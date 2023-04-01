@@ -35,7 +35,7 @@ export class PostController {
   public static async read(req: Request, res: Response, next: NextFunction) {
     try {
       const { _id } = req.params;
-      const foundPost = await Post.findById(_id);
+      const foundPost = await PostService.read(_id);
       if (foundPost) {
         res.status(200).json({ data: foundPost });
       }

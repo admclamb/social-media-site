@@ -1,11 +1,5 @@
-import { integer } from "aws-sdk/clients/cloudfront";
-import { Knex } from "knex";
-import { ObjectId } from "mongoose";
-import { Post } from "../db/models/PostModel";
-import { User } from "../db/models/UserModel";
-const knex = require("../db/connection");
 export class PostService {
-  private static manager: Knex = knex;
+  private static manager;
   public static list(): Promise<any> {
     return PostService.manager("posts").select("*");
   }
@@ -14,8 +8,8 @@ export class PostService {
     return PostService.manager("posts").select("*");
   }
 
-  public static read(_id: ObjectId): Promise<any> {
-    return PostService.manager("posts").select("*").where({ _id });
+  public static read(_id: string): Promise<any> {
+    return PostService.manager("posts").select("*").where({ _id }).first();
   }
 
   public static create(post: any): Promise<any> {
@@ -32,7 +26,7 @@ export class PostService {
       .update(updatedPost, "*");
   }
 
-  public static destroy(_id: ObjectId): Promise<any> {
+  public static destroy(_id: string): Promise<any> {
     return PostService.manager("posts").where({ _id }).del();
   }
 }

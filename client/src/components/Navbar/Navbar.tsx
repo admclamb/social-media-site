@@ -23,7 +23,7 @@ const Navbar = (props: Props) => {
   };
   return (
     <>
-      <nav className="px-2 z-30 sticky bg-white w-full top-0 h-16 py-3 m-0 border-b relative">
+      <nav className="bg-white dark:bg-zinc-800 px-2 z-30 sticky bg-white w-full top-0 h-16 py-3 m-0 border-b relative">
         <div className="custom-container flex items-center gap-2 h-full mx-auto relative">
           <ButtonLightPrimary className="md:hidden" onClick={toggleNav}>
             <FontAwesomeIcon icon={faBars} onClick={toggleNav} />

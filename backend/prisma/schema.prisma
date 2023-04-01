@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model admins {
+  user_id Int?   @unique(map: "admins_user_id_unique")
+  users   users? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "admins_user_id_foreign")
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model bookmarks {
+  post_id    Int?     @unique(map: "bookmarks_post_id_unique")
+  user_id    Int?     @unique(map: "bookmarks_user_id_unique")
+  isNotified Boolean? @default(false)
+  isActive   Boolean? @default(false)
+  posts      posts?   @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "bookmarks_post_id_foreign")
+  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "bookmarks_user_id_foreign")
+  @@id([post_id, user_id])
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model comments {
+  post_id    Int?     @unique(map: "comments_post_id_unique")
+  user_id    Int?     @unique(map: "comments_user_id_unique")
+  isNotified Boolean? @default(false)
+  text       String
+  posts      posts?   @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "comments_post_id_foreign")
+  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "comments_user_id_foreign")
+
+  @@ignore
+}
+
+model knex_migrations {
+  id             Int       @id @default(autoincrement())
+  name           String?   @db.VarChar(255)
+  batch          Int?
+  migration_time DateTime? @db.Timestamptz(6)
+}
+
+model knex_migrations_lock {
+  index     Int  @id @default(autoincrement())
+  is_locked Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model likes {
+  post_id    Int?     @unique(map: "likes_post_id_unique")
+  user_id    Int?     @unique(map: "likes_user_id_unique")
+  isNotified Boolean? @default(false)
+  isActive   Boolean? @default(false)
+  posts      posts?   @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "likes_post_id_foreign")
+  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "likes_user_id_foreign")
+
+  @@ignore
+}
+
+model posts {
+  id                  Int        @id @default(autoincrement()) @map("_id")
+  title               String     @db.VarChar(255)
+  slug                String
+  author_id           Int
+  header_image_url    String?
+  body                String
+  number_of_likes     Int?       @default(0)
+  number_of_bookmarks Int?       @default(0)
+  number_of_comments  Int?       @default(0)
+  tags                Int[]
+  created_at          DateTime   @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime   @default(now()) @db.Timestamptz(6)
+  bookmarks           bookmarks? @ignore
+  comments            comments?  @ignore
+  likes               likes?     @ignore
+  users               users      @relation(fields: [author_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "posts_author_id_foreign")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model profiles {
+  user_id         Int?
+  first_name      String
+  last_name       String
+  about           String? @db.VarChar(255)
+  avatar          String
+  primary_color   String? @default("#000")
+  secondary_color String? @default("fff")
+  work            String?
+  users           users?  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "profiles_user_id_foreign")
+
+  @@ignore
+}
+
+model tags {
+  id  Int    @id @default(autoincrement()) @map("_id")
+  tag String @unique(map: "tags_tag_unique") @db.VarChar(255)
+}
+
+model users {
+  id         Int        @id @default(autoincrement()) @map("_id")
+  email      String     @unique(map: "users_email_unique")
+  password   String     @db.VarChar(255)
+  created_at DateTime   @default(now()) @db.Timestamptz(6)
+  updated_at DateTime   @default(now()) @db.Timestamptz(6)
+  admins     admins?    @ignore
+  bookmarks  bookmarks? @ignore
+  comments   comments?  @ignore
+  likes      likes?     @ignore
+  posts      posts[]
+  profiles   profiles[] @ignore
+}
